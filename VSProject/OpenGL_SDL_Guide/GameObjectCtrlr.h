@@ -20,11 +20,16 @@ public:
 
 	static GameObjectCtrlr* getInstance();		// Public singleton instance getter
 
-	// Game Structures ================
+	// Game Structures =====================
 
 	void InitializeGameObjects();				// Create objects before the main loop
 	void LoopGameObjects();						// The main loop itself
 	void ReleaseGameObjects();					// Delete objects after the main loop
+
+	// Routines =============================
+
+	void UpdateAll();							// Updates all GameObjects
+	void DrawAll();								// Draws all GameObjects
 
 private:
 	// Singleton Management =================

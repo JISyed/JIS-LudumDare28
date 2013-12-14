@@ -38,13 +38,7 @@ void GameObjectCtrlr::InitializeGameObjects()
 // The main loop itself
 void GameObjectCtrlr::LoopGameObjects()
 {
-	GameObjectList::iterator itr;
-	for(itr = this->listOfGameObjects.begin(); 
-		itr != this->listOfGameObjects.end();
-		itr++);
-	{
-		static_cast<GameObject*>(*itr)->Update();
-	}
+	this->UpdateAll();
 }
 
 // Delete objects after the main loop
@@ -56,5 +50,31 @@ void GameObjectCtrlr::ReleaseGameObjects()
 		itr++);
 	{
 		// Delete objects here
+	}
+}
+
+// Routines ================================================
+
+// Updates all GameObjects
+void GameObjectCtrlr::UpdateAll()
+{
+	GameObjectList::iterator itr;
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++);
+	{
+		static_cast<GameObject*>(*itr)->Update();
+	}
+}
+
+// Draws all GameObjects
+void GameObjectCtrlr::DrawAll()
+{
+	GameObjectList::iterator itr;
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++);
+	{
+		static_cast<GameObject*>(*itr)->Draw();
 	}
 }
