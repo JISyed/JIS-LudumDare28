@@ -7,7 +7,7 @@
 #ifndef GAME_OBJECT_CTRLR
 #define GAME_OBJECT_CTRLR
 
-#include <forward_list>
+#include <forward_list>		// Requires C++11
 
 class GameObject;
 

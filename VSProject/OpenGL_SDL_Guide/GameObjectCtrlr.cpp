@@ -38,11 +38,23 @@ void GameObjectCtrlr::InitializeGameObjects()
 // The main loop itself
 void GameObjectCtrlr::LoopGameObjects()
 {
-
+	GameObjectList::iterator itr;
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++);
+	{
+		static_cast<GameObject*>(*itr)->Update();
+	}
 }
 
 // Delete objects after the main loop
 void GameObjectCtrlr::ReleaseGameObjects()
 {
-
+	GameObjectList::const_iterator itr;
+	for(itr = this->listOfGameObjects.cbegin(); 
+		itr != this->listOfGameObjects.cend();
+		itr++);
+	{
+		// Delete objects here
+	}
 }
