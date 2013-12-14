@@ -6,3 +6,5 @@ This base of this project can be found in GraphicsWrapperBase.zip. It's based of
 In order to prevent linker errors, see Libraries.zip for the needed libraries. They must be put into the C drive.
 
 Due to the time, the scope of the game will be tiny.
+
+Don't forget to add FreeImage.dll, SDL2.dll, and glew32.dll to the Debug or Release directories where the .exe build is.
