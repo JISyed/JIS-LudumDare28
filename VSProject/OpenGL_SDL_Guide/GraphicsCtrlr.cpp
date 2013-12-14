@@ -31,10 +31,10 @@ void GraphicsCtrlr::InitializeGraphics()
 
 	// Create textures
 	// Cat texture
-	this->CreateNewTexture(0, "./Images/cat.png", "texKitten");
+	this->CreateNewTexture(0, "./Images/gameTexture.png", "texTexture");
 	this->SetupTextueProperties(0, GL_REPEAT, GL_NEAREST_MIPMAP_NEAREST);
 	// Dog texture
-	this->CreateNewTexture(1, "./Images/dog.png", "texPuppy");
+	this->CreateNewTexture(1, "./Images/gameOver.png", "texGameOver");
 	this->SetupTextueProperties(1, GL_REPEAT, GL_NEAREST_MIPMAP_NEAREST);
 
 

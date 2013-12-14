@@ -1,8 +1,8 @@
 #version 150
 
 uniform float flucScale;
-uniform sampler2D texKitten;
-uniform sampler2D texPuppy;
+uniform sampler2D texTexture;
+uniform sampler2D texGameOver;
 
 in vec3 fragColor;
 in vec2 fragTexcoord;
@@ -11,11 +11,11 @@ out vec4 outColor;
 
 void main()
 {
-	vec4 catPixColor = texture(texKitten, fragTexcoord);
-	vec4 dogPixColor = texture(texPuppy, fragTexcoord);
+	vec4 texPixColor = texture(texTexture, fragTexcoord);
+	vec4 gameOverPixColor = texture(texGameOver, fragTexcoord);
 
-	catPixColor = catPixColor * vec4(fragColor, 1.0);
-	dogPixColor = dogPixColor * vec4(fragColor, 1.0);
+	texPixColor = texPixColor * vec4(fragColor, 1.0);
+	gameOverPixColor = gameOverPixColor * vec4(fragColor, 1.0);
 
-	outColor = mix(catPixColor, dogPixColor, flucScale);
+	outColor = mix(texPixColor, gameOverPixColor, flucScale);
 }

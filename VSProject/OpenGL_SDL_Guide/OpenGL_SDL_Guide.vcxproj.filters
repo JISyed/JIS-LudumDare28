@@ -33,6 +33,15 @@
     <ClCompile Include="ProgramCtrlr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjectCtrlr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogicCtrlr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\firstFrag.glsl">
@@ -56,6 +65,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProgramCtrlr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectCtrlr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogicCtrlr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

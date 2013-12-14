@@ -26,7 +26,7 @@ void ProgramCtrlr::InitializeProgram()
 	int height = 600;
 
 	// Make a window
-	this->theWindow = SDL_CreateWindow("OpenGL Tutorial", 100, 100, width, height, SDL_WINDOW_OPENGL);
+	this->theWindow = SDL_CreateWindow("BlockDodger", 100, 100, width, height, SDL_WINDOW_OPENGL);
 
 	// Make a graphics canvas (OpenGL context)
 	this->theGLContext = SDL_GL_CreateContext(this->theWindow);

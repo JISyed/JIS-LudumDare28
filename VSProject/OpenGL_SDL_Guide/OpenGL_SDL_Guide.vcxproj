@@ -75,6 +75,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameLogicCtrlr.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectCtrlr.cpp" />
     <ClCompile Include="GraphicsCtrlr.cpp" />
     <ClCompile Include="ProgramCtrlr.cpp" />
     <ClCompile Include="sdlMain.cpp" />
@@ -87,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameGeometry.h" />
+    <ClInclude Include="GameLogicCtrlr.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectCtrlr.h" />
     <ClInclude Include="GraphicsCtrlr.h" />
     <ClInclude Include="ProgramCtrlr.h" />
     <ClInclude Include="TextureCtrlr.h" />
