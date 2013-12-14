@@ -13,6 +13,7 @@
 #endif
 
 class GraphicsCtrlr;
+class GameObjectCtrlr;
 
 // This should be made in the stack
 class ProgramCtrlr
@@ -29,10 +30,11 @@ public:
 
 private:
 	// Data ======================
-	GraphicsCtrlr* graphicsCtrlr;	// STATIC instance of graphics wrapper
-	SDL_Window* theWindow;			// Game window handled by SDL
-	SDL_GLContext theGLContext;		// OpenGL graphics context
-	SDL_Event windowEvent;			// Program events handled by SDL
+	GraphicsCtrlr* graphicsCtrlr;		// STATIC instance of graphics wrapper
+	GameObjectCtrlr* gameObjectCtrlr;	// STATIC instance of GameObject manager
+	SDL_Window* theWindow;				// Game window handled by SDL
+	SDL_GLContext theGLContext;			// OpenGL graphics context
+	SDL_Event windowEvent;				// Program event handled by SDL per frame
 
 };
 

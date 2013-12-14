@@ -79,7 +79,6 @@ void GraphicsCtrlr::LoopGraphics()
 	// Triangles, offset, draw 3 verts
 	glDrawArrays(GL_TRIANGLES, 0, 36); // Without EBOs
 
-
 	// DRAW2
 
 	// Rotation matrix

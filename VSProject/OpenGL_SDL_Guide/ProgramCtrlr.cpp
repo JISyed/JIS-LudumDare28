@@ -1,6 +1,7 @@
 #include "ProgramCtrlr.h"
 
 #include "GraphicsCtrlr.h"
+#include "GameObjectCtrlr.h"
 
 #include <iostream>
 
@@ -33,10 +34,16 @@ void ProgramCtrlr::InitializeProgram()
 
 	// Make a OpenGL graphics manager
 	this->graphicsCtrlr = GraphicsCtrlr::GetInstance();
-	graphicsCtrlr->SetWindowSize(width, height);
+	this->graphicsCtrlr->SetWindowSize(width, height);
 
 	// Initilaize everything for graphics
-	graphicsCtrlr->InitializeGraphics();
+	this->graphicsCtrlr->InitializeGraphics();
+
+	// Make GameObject Manager
+	this->gameObjectCtrlr->getInstance();
+
+	// Initialize anything GameObject Manager needs
+	this->gameObjectCtrlr->InitializeGameObjects();
 }
 
 // Run the program every frame
@@ -44,37 +51,43 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 {
 	// Poll for window events
 	if (SDL_PollEvent(&(this->windowEvent)))
+	{
+		// Leave main loop when X on window corner is pressed
+		if (this->windowEvent.type == SDL_QUIT)
 		{
-			// Leave main loop when X on window corner is pressed
-			if (this->windowEvent.type == SDL_QUIT)
-			{
-				shouldQuit = true;
-				return;
-			}
-
-			// Leave main loop if escape key was released
-			if (this->windowEvent.type == SDL_KEYUP && 
-				this->windowEvent.key.keysym.sym == SDLK_ESCAPE)
-			{
-				shouldQuit = true;
-				return;
-			}
+			shouldQuit = true;
+			return;
 		}
 
-		// Clear the screen to black
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// Leave main loop if escape key was released
+		if (this->windowEvent.type == SDL_KEYUP && 
+			this->windowEvent.key.keysym.sym == SDLK_ESCAPE)
+		{
+			shouldQuit = true;
+			return;
+		}
+	}
 
-		// The Graphics Loop
-		graphicsCtrlr->LoopGraphics();
+	// Update GameObjects
+	this->gameObjectCtrlr->LoopGameObjects();
 
-		// glSwapBuffers - swap between the front and back render buffer
-		SDL_GL_SwapWindow(this->theWindow);
+	// Clear the screen to black
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// The Graphics Loop
+	graphicsCtrlr->LoopGraphics();
+
+	// glSwapBuffers - swap between the front and back render buffer
+	SDL_GL_SwapWindow(this->theWindow);
 }
 
 // Deallocate everything in the program
 void ProgramCtrlr::FinalizeProgram()
 {
+	// Destroy all the GameObjects
+	this->gameObjectCtrlr->ReleaseGameObjects();
+
 	// Delete everything for graphics
 	graphicsCtrlr->ReleaseGraphics();
 
