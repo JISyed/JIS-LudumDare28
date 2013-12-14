@@ -43,6 +43,7 @@ private:
 	glm::vec3 scale;					// Mesh scale in 3 dimensions
 	glm::vec3 eulerAngles;				// Angle rotations in 3 dimentions
 	unsigned int textureUnit;			// Assigns a texture unit to an object
+	bool markedForDeletion;				// Will the object get deleted?
 
 	// Matrices ====================
 	glm::mat4 rotationMatrix;

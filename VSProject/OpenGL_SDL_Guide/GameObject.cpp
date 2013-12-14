@@ -16,6 +16,7 @@ GameObject::GameObject()
 	this->rotationMatrix = glm::mat4(1.0f);
 	this->translateMatrix = glm::translate(this->position);
 	this->scaleMatrix = glm::mat4(1.0f);
+	this->markedForDeletion = false;
 }
 
 // Destructor

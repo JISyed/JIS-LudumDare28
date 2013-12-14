@@ -9,11 +9,11 @@
 // Constructor
 GameObjectCtrlr::GameObjectCtrlr()
 {
-	// Setup stuff here
+	//this->listOfGameObjects = GameObjectList();
 }
 
 // Public singleton instance getter
-GameObjectCtrlr* GameObjectCtrlr::getInstance()
+GameObjectCtrlr* GameObjectCtrlr::GetInstance()
 {
 	std::cout << "Getting GameObjectCtrlr." << std::endl;
 	return GameObjectCtrlr::privGetInstance();
@@ -44,10 +44,11 @@ void GameObjectCtrlr::LoopGameObjects()
 // Delete objects after the main loop
 void GameObjectCtrlr::ReleaseGameObjects()
 {
+	// Delete all GameObjects
 	GameObjectList::const_iterator itr;
-	for(itr = this->listOfGameObjects.cbegin(); 
-		itr != this->listOfGameObjects.cend();
-		itr++);
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++)
 	{
 		// Delete objects here
 	}
@@ -58,10 +59,10 @@ void GameObjectCtrlr::ReleaseGameObjects()
 // Updates all GameObjects
 void GameObjectCtrlr::UpdateAll()
 {
-	GameObjectList::iterator itr;
+	GameObjectList::const_iterator itr;
 	for(itr = this->listOfGameObjects.begin(); 
 		itr != this->listOfGameObjects.end();
-		itr++);
+		itr++)
 	{
 		static_cast<GameObject*>(*itr)->Update();
 	}
@@ -73,7 +74,7 @@ void GameObjectCtrlr::DrawAll()
 	GameObjectList::iterator itr;
 	for(itr = this->listOfGameObjects.begin(); 
 		itr != this->listOfGameObjects.end();
-		itr++);
+		itr++)
 	{
 		static_cast<GameObject*>(*itr)->Draw();
 	}

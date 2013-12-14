@@ -40,7 +40,7 @@ void ProgramCtrlr::InitializeProgram()
 	this->graphicsCtrlr->InitializeGraphics();
 
 	// Make GameObject Manager
-	this->gameObjectCtrlr->getInstance();
+	this->gameObjectCtrlr = GameObjectCtrlr::GetInstance();
 
 	// Initialize anything GameObject Manager needs
 	this->gameObjectCtrlr->InitializeGameObjects();

@@ -7,7 +7,7 @@
 #ifndef GAME_OBJECT_CTRLR
 #define GAME_OBJECT_CTRLR
 
-#include <forward_list>		// Requires C++11
+#include <forward_list>
 
 class GameObject;
 
@@ -18,7 +18,7 @@ class GameObjectCtrlr
 public:
 	// Singleton Access =====================
 
-	static GameObjectCtrlr* getInstance();		// Public singleton instance getter
+	static GameObjectCtrlr* GetInstance();		// Public singleton instance getter
 
 	// Game Structures =====================
 
