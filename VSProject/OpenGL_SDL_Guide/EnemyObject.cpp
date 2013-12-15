@@ -85,10 +85,9 @@ void EnemyObject::Update()
 // Initialization after construction
 void EnemyObject::init()
 {
-
 	// Set other properties
 	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
-	this->scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	this->scale = glm::vec3(0.8f, 0.8f, 1.0f);
 	this->radius = 0.5f;
 	this->colorTint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);	// Red
 

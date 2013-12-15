@@ -54,7 +54,7 @@ void GameLogicCtrlr::InitializeGame()
 
 	// Make random number between EDGE_BORDER and -EDGE_BORDER
 	//float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-	float randomSpawnPos = 0.0f;
+	float randomSpawnPos = 9.0f;
 
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -77,13 +77,9 @@ void GameLogicCtrlr::InitializeGame()
 void GameLogicCtrlr::LoopGame()
 {
 	// Mark the program for reset if Game Over
-	if((this->IsGameOver()) && (this->gameOverSplash == NULL))
+	if((this->IsGameOver()))
 	{
-		std::cout << "Game Over!" << std::endl;
-		gameOverSplash = new GameObject();
-		gameOverSplash->SetTextureUnit(1);
-		gameOverSplash->SetPosition(18.0f, 0.0f, 13.0f);
-		GameObjectCtrlr::GetInstance()->Add(gameOverSplash);
+		
 	}
 }
 
@@ -92,7 +88,6 @@ void GameLogicCtrlr::ReleaseGame()
 {
 	// Reset game over flag
 	this->gameOver = false;
-	this->gameOverSplash = NULL;
 }
 
 // Routines ===============================================
@@ -133,6 +128,15 @@ float GameLogicCtrlr::GetRandomNumber(int x)
 	return randomNumber;
 }
 
+// Make Player shoot Bullet
+void GameLogicCtrlr::MakePlayerShootBullet()
+{
+	if(this->playerInstance != NULL)
+	{
+		this->playerInstance->ShootBullet();
+	}
+}
+
 // Properties ===========================
 
 void GameLogicCtrlr::SetBulletInstance(GameObject* newBullet)
@@ -148,6 +152,13 @@ void GameLogicCtrlr::SetPlayerInstance(PlayerObject* newPlayer)
 void GameLogicCtrlr::DeclareGameOver()
 {
 	this->gameOver = true;
+
+	std::cout << "Game Over!" << std::endl;
+	GameObject* gameOverSplash = new GameObject();
+	gameOverSplash->SetTextureUnit(1);
+	gameOverSplash->SetPosition(18.0f, 0.0f, 13.0f);
+	gameOverSplash->SetScale(1.0f, 2.0f, 2.0f);
+	GameObjectCtrlr::GetInstance()->Add(gameOverSplash);
 }
 
 GameObject* GameLogicCtrlr::GetBulletInstance()

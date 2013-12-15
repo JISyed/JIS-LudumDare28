@@ -33,6 +33,9 @@ public:
 	// Generate random number between x and -x
 	static float GetRandomNumber(int x);
 
+	// Make Player shoot Bullet
+	void MakePlayerShootBullet();
+
 	// Properties ===========================
 
 	void SetBulletInstance(GameObject* newBullet);
@@ -54,7 +57,6 @@ private:
 	bool gameOver;								// Is it Game Over yet?
 	GameObject* bulletInstance;					// The current bullet instance
 	PlayerObject* playerInstance;				// The current player instance
-	GameObject* gameOverSplash;					// Splash showing GameOver
 
 	
 

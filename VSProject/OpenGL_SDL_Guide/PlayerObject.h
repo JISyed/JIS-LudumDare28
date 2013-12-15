@@ -15,6 +15,7 @@ public:
 	// Routines ======================
 
 	virtual void Update();					// Override GameObject's Update()
+	void ShootBullet();						// Fire BulletObject from current position
 
 private:
 	// Helpers =======================

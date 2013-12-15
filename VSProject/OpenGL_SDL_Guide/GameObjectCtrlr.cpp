@@ -31,7 +31,15 @@ GameObjectCtrlr* GameObjectCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameObjectCtrlr::InitializeGameObjects()
 {
-	
+	// Delete stray GameObjects
+	GameObjectList::const_iterator itr;
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++)
+	{
+		delete (*itr);
+		itr = this->listOfGameObjects.erase(itr);
+	}
 }
 
 // The main loop itself

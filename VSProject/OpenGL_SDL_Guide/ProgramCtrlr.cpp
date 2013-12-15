@@ -92,6 +92,16 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 				ProgramCtrlr::MarkProgramForReset();
 			}
 		}
+
+		// Shoot bullet (only if player exists)
+		if (this->windowEvent.type == SDL_KEYDOWN && 
+			this->windowEvent.key.keysym.sym == SDLK_SPACE)
+		{
+			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
+			{
+				this->gameLogicCtrlr->MakePlayerShootBullet();
+			}
+		}
 	}
 
 	// Update GameLogic
