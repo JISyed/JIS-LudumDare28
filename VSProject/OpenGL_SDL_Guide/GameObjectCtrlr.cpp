@@ -32,13 +32,31 @@ GameObjectCtrlr* GameObjectCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameObjectCtrlr::InitializeGameObjects()
 {
-
+	for(int i = 0; i < 5; i++)
+	{
+		GameObject* go = new GameObject();
+		this->Add(go);
+	}
 }
 
 // The main loop itself
 void GameObjectCtrlr::LoopGameObjects()
 {
 	this->UpdateAll();
+
+	// Delete any GameObjects marked for deletion
+	GameObjectList::const_iterator itr;
+	for(itr = this->listOfGameObjects.begin(); 
+		itr != this->listOfGameObjects.end();
+		itr++)
+	{
+		bool shouldDelete = static_cast<GameObject*>(*itr)->IsMarkedForDeletion();
+		if (shouldDelete)
+		{
+			// Delete GameObject
+			itr = this->listOfGameObjects.erase(itr);
+		}
+	}
 }
 
 // Delete objects after the main loop
@@ -50,7 +68,7 @@ void GameObjectCtrlr::ReleaseGameObjects()
 		itr != this->listOfGameObjects.end();
 		itr++)
 	{
-		// Delete objects here
+		itr = this->listOfGameObjects.erase(itr);
 	}
 }
 
@@ -78,4 +96,10 @@ void GameObjectCtrlr::DrawAll()
 	{
 		static_cast<GameObject*>(*itr)->Draw();
 	}
+}
+
+// Adds a GameObject to list
+void GameObjectCtrlr::Add(GameObject* newGameObject)
+{
+	this->listOfGameObjects.push_back(newGameObject);
 }

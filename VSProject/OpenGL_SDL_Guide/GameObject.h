@@ -7,6 +7,7 @@
 #define GAME_OBJECT
 
 #include <glm/glm.hpp>
+#include "GameObjectCtrlr.h"
 
 class GameObject
 {
@@ -14,7 +15,6 @@ public:
 	// Ctor/Dtor ===================
 	
 	GameObject();						// Constuctor
-	virtual ~GameObject();				// Virtual Destructor
 
 	// Routines ====================
 	
@@ -30,11 +30,13 @@ public:
 	void SetEulerAngles(glm::vec3 newEulerAngles);
 	void SetEulerAngles(float xRotation, float yRotation, float zRotation);
 	void SetTextureUnit(unsigned int newTextureUnit);
+	void MarkForDeletion();
 
 	glm::vec3 GetPosition();
 	glm::vec3 GetScale();
 	glm::vec3 GetEulerAngles();
 	unsigned int GetTextureUnit();
+	bool IsMarkedForDeletion();
 
 private:
 
@@ -54,6 +56,10 @@ private:
 
 	void updateMatrices();				// Update all tranformation matrices
 	glm::mat4 constructModelMatrix();	// Make the model matrix to send to shaders
+
+protected:
+	friend class GameObjectCtrlr;		// GameObjectCtrlr has access
+	virtual ~GameObject();				// Virtual Destructor
 };
 
 

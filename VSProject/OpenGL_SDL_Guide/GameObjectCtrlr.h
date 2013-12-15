@@ -7,11 +7,11 @@
 #ifndef GAME_OBJECT_CTRLR
 #define GAME_OBJECT_CTRLR
 
-#include <forward_list>
+#include <list>
 
 class GameObject;
 
-typedef std::forward_list<GameObject*> GameObjectList;
+typedef std::list<GameObject*> GameObjectList;
 
 class GameObjectCtrlr
 {
@@ -30,6 +30,7 @@ public:
 
 	void UpdateAll();							// Updates all GameObjects
 	void DrawAll();								// Draws all GameObjects
+	void Add(GameObject* newGameObject);		// Adds a GameObject to list
 
 private:
 	// Singleton Management =================

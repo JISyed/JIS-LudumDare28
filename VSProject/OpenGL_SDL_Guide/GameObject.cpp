@@ -22,7 +22,8 @@ GameObject::GameObject()
 // Destructor
 GameObject::~GameObject()
 {
-
+	
+	 
 }
 
 // Routines =========================================
@@ -78,6 +79,11 @@ void GameObject::SetTextureUnit(unsigned int newTextureUnit)
 	this->textureUnit = newTextureUnit;
 }
 
+void GameObject::MarkForDeletion()
+{
+	this->markedForDeletion = true;
+}
+
 glm::vec3 GameObject::GetPosition()
 {
 	return this->position;
@@ -96,6 +102,11 @@ glm::vec3 GameObject::GetEulerAngles()
 unsigned int GameObject::GetTextureUnit()
 {
 	return this->textureUnit;
+}
+
+bool GameObject::IsMarkedForDeletion()
+{
+	return this->markedForDeletion;
 }
 
 //  Helpers ===========================================
