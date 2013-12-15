@@ -22,7 +22,7 @@ ProgramCtrlr::~ProgramCtrlr()
 void ProgramCtrlr::InitializeProgram()
 {
 	// Start SDL
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 
 	int width = 800;
 	int height = 600;

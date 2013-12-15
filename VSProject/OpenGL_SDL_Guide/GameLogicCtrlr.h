@@ -21,7 +21,7 @@ public:
 	// Get the squared distance between two objects
 	static float GetSquaredDistance(GameObject* obj1, GameObject* obj2);
 
-	// Check of two GameObjects overlap
+	// Check if two GameObjects overlap
 	static bool DoObjectsOverlap(GameObject* obj1, GameObject* obj2);
 
 private:

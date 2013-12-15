@@ -78,10 +78,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletObject.cpp" />
+    <ClCompile Include="EnemyObject.cpp" />
     <ClCompile Include="GameLogicCtrlr.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectCtrlr.cpp" />
     <ClCompile Include="GraphicsCtrlr.cpp" />
+    <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="ProgramCtrlr.cpp" />
     <ClCompile Include="sdlMain.cpp" />
     <ClCompile Include="TextureCtrlr.cpp" />
@@ -92,11 +95,14 @@
     <None Include="Shaders\firstVert.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletObject.h" />
+    <ClInclude Include="EnemyObject.h" />
     <ClInclude Include="GameGeometry.h" />
     <ClInclude Include="GameLogicCtrlr.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectCtrlr.h" />
     <ClInclude Include="GraphicsCtrlr.h" />
+    <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="ProgramCtrlr.h" />
     <ClInclude Include="TextureCtrlr.h" />
     <ClInclude Include="TextureObject.h" />
