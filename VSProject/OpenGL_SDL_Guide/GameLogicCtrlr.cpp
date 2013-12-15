@@ -33,8 +33,8 @@ void GameLogicCtrlr::InitializeGame()
 	{
 		GameObject* obj = new GameObject();
 
-		obj->SetPosition(-i, i, 0);
-		obj->SetEulerAngles(i*10, i*10, i*10);
+		obj->SetPosition((float) -i, (float) i, 0);
+		obj->SetEulerAngles(i*10.0f, i*10.0f, i*10.0f);
 		obj->SetScale(i/5.0f, i/5.0f, i/5.0f);
 		obj->SetTextureUnit(0);
 		obj->SetColorTint(0.2f*i, 1.0f, 0.2f*i, 1.0f);

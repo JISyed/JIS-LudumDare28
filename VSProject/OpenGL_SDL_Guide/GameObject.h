@@ -43,6 +43,7 @@ public:
 	unsigned int GetTextureUnit();
 	bool IsMarkedForDeletion();
 	int GetNumOfVertices();
+	float GetRadius();
 
 private:
 
@@ -55,6 +56,7 @@ private:
 	unsigned int textureUnit;			// Assigns a texture unit to an object
 	bool markedForDeletion;				// Will the object get deleted?
 	int numOfVertices;					// The number of vertices to draw
+	float radius;						// Half the length of the cube
 
 	// Matrices ====================
 

@@ -22,6 +22,7 @@ GameObject::GameObject()
 	this->scaleMatrix = glm::mat4(1.0f);
 	this->markedForDeletion = false;
 	this->numOfVertices = 36;			// Default verts in a cube
+	this->radius = 0.5f;
 }
 
 // Destructor (protected virtual)
@@ -73,11 +74,17 @@ void GameObject::SetPosition(float newX, float newY, float newZ)
 void GameObject::SetScale(glm::vec3 newScale)
 {
 	this->scale = newScale;
+
+	float average = (newScale.x + newScale.y + newScale.z) / 3.0f;
+	this->radius = average;
 }
 
 void GameObject::SetScale(float newX, float newY, float newZ)
 {
 	this->scale = glm::vec3(newX, newY, newZ);
+
+	float average = (newX + newY + newZ) / 3.0f;
+	this->radius = average;
 }
 
 void GameObject::SetEulerAngles(glm::vec3 newEulerAngles)
@@ -148,6 +155,11 @@ bool GameObject::IsMarkedForDeletion()
 int GameObject::GetNumOfVertices()
 {
 	return this->numOfVertices;
+}
+
+float GameObject::GetRadius()
+{
+	return this->radius;
 }
 
 //  Helpers ===========================================
