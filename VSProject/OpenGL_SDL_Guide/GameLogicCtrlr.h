@@ -37,9 +37,11 @@ public:
 
 	void SetBulletInstance(GameObject* newBullet);
 	void SetPlayerInstance(PlayerObject* newPlayer);
+	void DeclareGameOver();
 
 	GameObject* GetBulletInstance();
 	PlayerObject* GetPlayerInstance();
+	bool IsGameOver();
 
 private:
 	// Singleton Management =================

@@ -1,6 +1,7 @@
 #include "PlayerObject.h"
 
 #include "GameLogicCtrlr.h"
+#include "ProgramCtrlr.h"
 
 // Ctor / Dtor ===========================================
 
@@ -33,6 +34,9 @@ PlayerObject::~PlayerObject()
 {
 	// Clear reference with GameLogicCtrlr
 	GameLogicCtrlr::GetInstance()->SetPlayerInstance(NULL);
+
+	// Declare Game Over
+	GameLogicCtrlr::GetInstance()->DeclareGameOver();
 }
 
 // Routines ===============================================

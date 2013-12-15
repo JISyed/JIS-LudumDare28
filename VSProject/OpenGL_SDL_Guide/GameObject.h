@@ -16,6 +16,7 @@ public:
 	// Ctor/Dtor ===================
 	
 	GameObject();						// Constuctor
+	
 
 	// Routines ====================
 	

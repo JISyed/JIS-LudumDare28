@@ -6,10 +6,11 @@
 class EnemyObject : public GameObject
 {
 public:
-	// Ctors =========================
+	// Ctors/Dtor ====================
 
 	EnemyObject();							// Default constructor
 	EnemyObject(glm::vec3 initialPos);		// Position constructor
+	
 
 	// Routines ======================
 
@@ -25,9 +26,10 @@ private:
 	void init();							// Initialization after construction
 
 protected:
-	// Dtor ==========================
+	// Inherited Routines ============
 
-	virtual ~EnemyObject();
+	virtual ~EnemyObject();					// Destructor
+	
 };
 
 

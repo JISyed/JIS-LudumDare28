@@ -7,6 +7,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
 
+#include <iostream>
+
 // Ctor/Dtor ========================================
 
 // Constructor
@@ -25,11 +27,10 @@ GameObject::GameObject()
 	this->radius = 0.5f;
 }
 
-// Destructor (protected virtual)
+// Destructor
 GameObject::~GameObject()
 {
-	
-	 
+	//std::cout << "GameObject Destroyed" << std::endl;
 }
 
 // Routines =========================================

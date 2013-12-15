@@ -21,22 +21,34 @@ class ProgramCtrlr
 {
 public:
 	// Ctor/Dtor =================
-	ProgramCtrlr();
-	~ProgramCtrlr();
+
+	ProgramCtrlr();						// Ctor
+	~ProgramCtrlr();					// Dtor
 
 	// Program Structure =========
+
 	void InitializeProgram();			// Setup the program components
 	void LoopProgram(bool& shouldQuit);	// Run the program every frame
 	void FinalizeProgram();				// Deallocate everything in the program
 
+	// Routines ===================
+
+	static void MarkProgramForReset();	// Marks the program for resetting
+
 private:
 	// Data ======================
+
 	GraphicsCtrlr* graphicsCtrlr;		// STATIC instance of graphics wrapper
 	GameObjectCtrlr* gameObjectCtrlr;	// STATIC instance of GameObject manager
 	GameLogicCtrlr* gameLogicCtrlr;		// STATIC instance of game's logic
 	SDL_Window* theWindow;				// Game window handled by SDL
 	SDL_GLContext theGLContext;			// OpenGL graphics context
 	SDL_Event windowEvent;				// Program event handled by SDL per frame
+
+	static bool shouldReset;			// Flag if program should reset
+
+	// Helpers ===================
+	void ResetProgram();				// Actually resets the program
 
 };
 

@@ -6,10 +6,11 @@
 class PlayerObject : public GameObject
 {
 public:
-	// Ctors =========================
+	// Ctors/Dtor ====================
 
 	PlayerObject();							// Default constructor
 	PlayerObject(glm::vec3 initialPos);		// Position constructor
+	
 
 	// Routines ======================
 
@@ -21,9 +22,11 @@ private:
 	void init();							// Initialization after construction
 
 protected:
-	// Dtor ==========================
 
-	virtual ~PlayerObject();
+	// Inherited Routines ============
+
+	virtual ~PlayerObject();				// Destructor
+	
 };
 
 

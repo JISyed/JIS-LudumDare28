@@ -6,10 +6,11 @@
 class BulletObject : public GameObject
 {
 public:
-	// Ctors =========================
+	// Ctors/Dtor ====================
 
 	BulletObject();							// Default constructor
 	BulletObject(glm::vec3 initialPos);		// Position constructor
+	
 	
 	// Routines ======================
 
@@ -25,9 +26,10 @@ private:
 	void init();							// Initialization after construction
 
 protected:
-	// Dtor ==========================
+	// Inherited Routines ============
 
-	virtual ~BulletObject();
+	virtual ~BulletObject();				// Destructor
+	
 };
 
 

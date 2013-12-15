@@ -1,6 +1,7 @@
 #include "GameLogicCtrlr.h"
 #include "GameObject.h"
 #include "GameObjectCtrlr.h"
+#include "ProgramCtrlr.h"
 
 #include "PlayerObject.h"
 #include "BulletObject.h"
@@ -72,13 +73,18 @@ void GameLogicCtrlr::InitializeGame()
 // The main loop itself
 void GameLogicCtrlr::LoopGame()
 {
-
+	// Mark the program for reset if Game Over
+	if(this->IsGameOver())
+	{
+		ProgramCtrlr::MarkProgramForReset();
+	}
 }
 
 // Delete objects after the main loop
 void GameLogicCtrlr::ReleaseGame()
 {
-
+	// Reset game over flag
+	this->gameOver = false;
 }
 
 // Routines ===============================================
@@ -131,6 +137,11 @@ void GameLogicCtrlr::SetPlayerInstance(PlayerObject* newPlayer)
 	this->playerInstance = newPlayer;
 }
 
+void GameLogicCtrlr::DeclareGameOver()
+{
+	this->gameOver = true;
+}
+
 GameObject* GameLogicCtrlr::GetBulletInstance()
 {
 	return this->bulletInstance;
@@ -139,4 +150,9 @@ GameObject* GameLogicCtrlr::GetBulletInstance()
 PlayerObject* GameLogicCtrlr::GetPlayerInstance()
 {
 	return this->playerInstance;
+}
+
+bool GameLogicCtrlr::IsGameOver()
+{
+	return this->gameOver;
 }

@@ -49,6 +49,7 @@ void GameObjectCtrlr::LoopGameObjects()
 		if (shouldDelete)
 		{
 			// Delete GameObject
+			delete (*itr);
 			itr = this->listOfGameObjects.erase(itr);
 		}
 	}
@@ -63,6 +64,7 @@ void GameObjectCtrlr::ReleaseGameObjects()
 		itr != this->listOfGameObjects.end();
 		itr++)
 	{
+		delete (*itr);
 		itr = this->listOfGameObjects.erase(itr);
 	}
 }

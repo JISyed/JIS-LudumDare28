@@ -6,6 +6,12 @@
 
 #include <iostream>
 
+// Static data ==============================================
+
+bool ProgramCtrlr::shouldReset = false;
+
+// Ctor/Dtor ================================================
+
 // Ctor
 ProgramCtrlr::ProgramCtrlr()
 {
@@ -17,6 +23,8 @@ ProgramCtrlr::~ProgramCtrlr()
 {
 
 }
+
+// Structure =================================================
 
 // Setup the program components
 void ProgramCtrlr::InitializeProgram()
@@ -51,6 +59,7 @@ void ProgramCtrlr::InitializeProgram()
 
 	// Initialize everything for the actual game
 	this->gameLogicCtrlr->InitializeGame();
+	ProgramCtrlr::shouldReset = false;
 }
 
 // Run the program every frame
@@ -86,6 +95,12 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 
 	// glSwapBuffers - swap between the front and back render buffer
 	SDL_GL_SwapWindow(this->theWindow);
+
+	// Check if program was flagged for reset
+	if(ProgramCtrlr::shouldReset == true)
+	{
+		this->ResetProgram();
+	}
 }
 
 // Deallocate everything in the program
@@ -105,4 +120,39 @@ void ProgramCtrlr::FinalizeProgram()
 
 	// Free SDL
 	SDL_Quit();
+
+	ProgramCtrlr::shouldReset = false;
+}
+
+// Routines ===================================================
+
+// Marks the program for resetting
+void ProgramCtrlr::MarkProgramForReset()
+{
+	ProgramCtrlr::shouldReset = true;
+}
+
+// Helpers ====================================================
+
+// Actually resets the program
+void ProgramCtrlr::ResetProgram()
+{
+	// Release game ------------
+	
+	// Destroy game logic
+	this->gameLogicCtrlr->ReleaseGame();
+
+	// Destroy all the GameObjects
+	this->gameObjectCtrlr->ReleaseGameObjects();
+
+	// Re-init game ------------
+
+	// Initialize anything GameObject Manager needs
+	this->gameObjectCtrlr->InitializeGameObjects();
+
+	// Initialize everything for the actual game
+	this->gameLogicCtrlr->InitializeGame();
+
+	// Reset flag
+	ProgramCtrlr::shouldReset = false;
 }
