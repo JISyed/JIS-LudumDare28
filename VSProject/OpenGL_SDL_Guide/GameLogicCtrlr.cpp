@@ -33,7 +33,7 @@ void GameLogicCtrlr::InitializeGame()
 	{
 		GameObject* obj = new GameObject();
 
-		obj->SetPosition(i, 0, 0);
+		obj->SetPosition(-i-1, i+1, 0);
 
 		GameObjectCtrlr::GetInstance()->Add(obj);
 	}

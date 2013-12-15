@@ -1,5 +1,6 @@
 #include "GraphicsCtrlr.h"
 #include "TextureCtrlr.h"
+#include "GameObjectCtrlr.h"
 
 #include "GameGeometry.h"
 
@@ -56,6 +57,7 @@ void GraphicsCtrlr::LoopGraphics()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	/*
 	// Vary the uniform alpha every frame
 	float time = (float)clock() / (float)CLOCKS_PER_SEC;
 	GLint uniflucScale = glGetUniformLocation(this->shaderProgram, "flucScale");
@@ -102,7 +104,9 @@ void GraphicsCtrlr::LoopGraphics()
 
 	// Triangles, offset, draw 3 verts
 	glDrawArrays(GL_TRIANGLES, 0, 36); // Without EBOs
+	*/
 
+	GameObjectCtrlr::GetInstance()->DrawAll();
 }
 
 // Delete objects after the main loop
@@ -527,4 +531,10 @@ void GraphicsCtrlr::SetUniform(glm::vec4 vector, const char* nameInShader)
 {
 	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
 	glUniform4fv(uniformLocation, 1, glm::value_ptr(vector));
+}
+
+// Draw triangles given the number of vertices (doesn't use EBOs)
+void GraphicsCtrlr::DrawTriangles(int numberOfVertices)
+{
+	glDrawArrays(GL_TRIANGLES, 0, numberOfVertices);
 }

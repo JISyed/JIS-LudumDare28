@@ -74,6 +74,9 @@ public:
 	// Send a vector (of size 4) to the shaders
 	void SetUniform(glm::vec4 vector, const char* nameInShader);
 
+	// Draw triangles given the number of vertices (doesn't use EBOs)
+	void DrawTriangles(int numberOfVertices);
+
 private:
 	// Singleton Access ===============
 

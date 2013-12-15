@@ -44,7 +44,15 @@ void GameObject::Update()
 // Draw the object
 void GameObject::Draw()
 {
+	// Send transformations to shaders
+	glm::mat4 modelMatrix = this->constructModelMatrix();
+	GraphicsCtrlr::GetInstance()->SetUniform(modelMatrix, "model");
 
+	// Send uniform color to shaders
+	GraphicsCtrlr::GetInstance()->SetUniform(this->colorTint, "colorTint");
+
+	// Draw object
+	GraphicsCtrlr::GetInstance()->DrawTriangles(this->numOfVertices);
 }
 
 // Properties ========================================
