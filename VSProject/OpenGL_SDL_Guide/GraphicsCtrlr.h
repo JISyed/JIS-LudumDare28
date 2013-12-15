@@ -15,6 +15,11 @@
 #include <SDL2/SDL_opengl.h>
 #endif
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/transform.hpp>
+
 class TextureCtrlr;
 
 class GraphicsCtrlr
@@ -54,6 +59,20 @@ public:
 	void UploadUniformData();					// Upload all the uniforms to the GPU for shaders to use
 	GLuint GetShaderProgramID();				// Getter for shaderProgram
 
+	// Send a matrix uniform to the shaders
+	void SetUniform(glm::mat4 matrix, const char* nameInShader);
+
+	// Send a int uniform to the shaders
+	void SetUniform(int numberValue, const char* nameInShader);
+
+	// Send a float uniform to the shaders
+	void SetUniform(float numberValue, const char* nameInShader);
+
+	// Send a vector (of size 3) to the shaders
+	void SetUniform(glm::vec3 vector, const char* nameInShader);
+
+	// Send a vector (of size 4) to the shaders
+	void SetUniform(glm::vec4 vector, const char* nameInShader);
 
 private:
 	// Singleton Access ===============

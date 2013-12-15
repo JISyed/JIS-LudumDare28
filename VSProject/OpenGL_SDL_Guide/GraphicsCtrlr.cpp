@@ -493,3 +493,38 @@ GLuint GraphicsCtrlr::GetShaderProgramID()
 {
 	return this->shaderProgram;
 }
+
+// Send a matrix uniform to the shaders
+void GraphicsCtrlr::SetUniform(glm::mat4 matrix, const char* nameInShader)
+{
+	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
+	glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+// Send a int uniform to the shaders
+void GraphicsCtrlr::SetUniform(int numberValue, const char* nameInShader)
+{
+	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
+	glUniform1i(uniformLocation, numberValue);
+}
+
+// Send a float uniform to the shaders
+void GraphicsCtrlr::SetUniform(float numberValue, const char* nameInShader)
+{
+	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
+	glUniform1f(uniformLocation, numberValue);
+}
+
+// Send a vector (of size 3) to the shaders
+void GraphicsCtrlr::SetUniform(glm::vec3 vector, const char* nameInShader)
+{
+	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
+	glUniform3fv(uniformLocation, 1, glm::value_ptr(vector));
+}
+
+// Send a vector (of size 4) to the shaders
+void GraphicsCtrlr::SetUniform(glm::vec4 vector, const char* nameInShader)
+{
+	GLint uniformLocation = glGetUniformLocation(this->shaderProgram, nameInShader);
+	glUniform4fv(uniformLocation, 1, glm::value_ptr(vector));
+}
