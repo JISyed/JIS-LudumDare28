@@ -1,6 +1,8 @@
 #ifndef GAME_LOGIC_CTRLR
 #define GAME_LOGIC_CTRLR
 
+class GameObject;
+
 class GameLogicCtrlr
 {
 public:
@@ -16,7 +18,11 @@ public:
 
 	// Routines =============================
 
+	// Get the squared distance between two objects
+	static float GetSquaredDistance(GameObject* obj1, GameObject* obj2);
 
+	// Check of two GameObjects overlap
+	static bool DoObjectsOverlap(GameObject* obj1, GameObject* obj2);
 
 private:
 	// Singleton Management =================

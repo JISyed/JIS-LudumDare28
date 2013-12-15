@@ -54,3 +54,29 @@ void GameLogicCtrlr::ReleaseGame()
 {
 
 }
+
+// Routines ===============================================
+
+// Get the squared distance between two objects
+float GameLogicCtrlr::GetSquaredDistance(GameObject* obj1, GameObject* obj2)
+{
+	// Get difference is positions for each dimension
+	float deltaX = obj1->GetPosition().x - obj2->GetPosition().x;
+	float deltaY = obj1->GetPosition().y - obj2->GetPosition().y;
+	float deltaZ = obj1->GetPosition().z - obj2->GetPosition().z;
+
+	// Distance formula without the square root
+	float squareDistance = deltaX*deltaX + deltaY*deltaY + deltaZ*deltaZ;
+
+	return squareDistance;
+}
+
+// Check of two GameObjects overlap
+bool GameLogicCtrlr::DoObjectsOverlap(GameObject* obj1, GameObject* obj2)
+{
+	float bothRadii = obj1->GetRadius() + obj2->GetRadius();
+	float squaredDistance = GameLogicCtrlr::GetSquaredDistance(obj1, obj2);
+
+	// Compare distance^2 with bothRadii^2
+	return squaredDistance < (bothRadii*bothRadii);
+}
