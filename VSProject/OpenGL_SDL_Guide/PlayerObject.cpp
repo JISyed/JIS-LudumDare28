@@ -1,7 +1,6 @@
 #include "PlayerObject.h"
 
 #include "GameLogicCtrlr.h"
-#include "ProgramCtrlr.h"
 
 // Ctor / Dtor ===========================================
 

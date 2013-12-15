@@ -8,6 +8,7 @@
 #include "EnemyObject.h"
 
 #include <ctime>
+#include <iostream>
 
 // Singleton ============================================
 
@@ -68,15 +69,21 @@ void GameLogicCtrlr::InitializeGame()
 												   randomSpawnPos, 
 												   ENEMY_SPAWN_HEIGHT));
 	GameObjectCtrlr::GetInstance()->Add(enemy);
+
+	this->gameOver = false;
 }
 
 // The main loop itself
 void GameLogicCtrlr::LoopGame()
 {
 	// Mark the program for reset if Game Over
-	if(this->IsGameOver())
+	if((this->IsGameOver()) && (this->gameOverSplash == NULL))
 	{
-		ProgramCtrlr::MarkProgramForReset();
+		std::cout << "Game Over!" << std::endl;
+		gameOverSplash = new GameObject();
+		gameOverSplash->SetTextureUnit(1);
+		gameOverSplash->SetPosition(18.0f, 0.0f, 13.0f);
+		GameObjectCtrlr::GetInstance()->Add(gameOverSplash);
 	}
 }
 
@@ -85,6 +92,7 @@ void GameLogicCtrlr::ReleaseGame()
 {
 	// Reset game over flag
 	this->gameOver = false;
+	this->gameOverSplash = NULL;
 }
 
 // Routines ===============================================

@@ -82,6 +82,16 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 			shouldQuit = true;
 			return;
 		}
+
+		// Leave Game Over screen (only if game over)
+		if (this->windowEvent.type == SDL_KEYUP && 
+			this->windowEvent.key.keysym.sym == SDLK_RETURN)
+		{
+			if(this->gameLogicCtrlr->IsGameOver())
+			{
+				ProgramCtrlr::MarkProgramForReset();
+			}
+		}
 	}
 
 	// Update GameLogic
