@@ -2,6 +2,7 @@
 
 #include "GraphicsCtrlr.h"
 #include "GameObjectCtrlr.h"
+#include "GameLogicCtrlr.h"
 
 #include <iostream>
 
@@ -44,6 +45,12 @@ void ProgramCtrlr::InitializeProgram()
 
 	// Initialize anything GameObject Manager needs
 	this->gameObjectCtrlr->InitializeGameObjects();
+
+	// Create the Game Logic handler
+	this->gameLogicCtrlr = GameLogicCtrlr::GetInstance();
+
+	// Initialize everything for the actual game
+	this->gameLogicCtrlr->InitializeGame();
 }
 
 // Run the program every frame
@@ -68,12 +75,11 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 		}
 	}
 
+	// Update GameLogic
+	this->gameLogicCtrlr->LoopGame();
+
 	// Update GameObjects
 	this->gameObjectCtrlr->LoopGameObjects();
-
-	// Clear the screen to black
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// The Graphics Loop
 	graphicsCtrlr->LoopGraphics();
@@ -85,6 +91,9 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 // Deallocate everything in the program
 void ProgramCtrlr::FinalizeProgram()
 {
+	// Destroy game logic
+	this->gameLogicCtrlr->ReleaseGame();
+
 	// Destroy all the GameObjects
 	this->gameObjectCtrlr->ReleaseGameObjects();
 

@@ -28,7 +28,6 @@ void GraphicsCtrlr::InitializeGraphics()
 	// Create the VAO, VBO, and EBO
 	this->CreateGLBuffers();
 
-
 	// Create textures
 	// Cat texture
 	this->CreateNewTexture(0, "./Images/gameTexture.png", "texTexture");
@@ -53,6 +52,10 @@ void GraphicsCtrlr::InitializeGraphics()
 // The main loop itself
 void GraphicsCtrlr::LoopGraphics()
 {
+	// Clear the screen to black
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	// Vary the uniform alpha every frame
 	float time = (float)clock() / (float)CLOCKS_PER_SEC;
 	GLint uniflucScale = glGetUniformLocation(this->shaderProgram, "flucScale");
@@ -100,9 +103,6 @@ void GraphicsCtrlr::LoopGraphics()
 	// Triangles, offset, draw 3 verts
 	glDrawArrays(GL_TRIANGLES, 0, 36); // Without EBOs
 
-
-	// Triangles, draw 3 indices, element data type, offset
-	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); // With EBOs
 }
 
 // Delete objects after the main loop

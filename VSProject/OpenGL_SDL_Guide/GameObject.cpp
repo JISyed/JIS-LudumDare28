@@ -1,5 +1,6 @@
 #include "GameObject.h"
 
+#include "GameObjectCtrlr.h"
 #include "GraphicsCtrlr.h"
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -12,14 +13,18 @@
 GameObject::GameObject()
 {
 	this->position = glm::vec3(0.0f, 0.0f, 0.0f);
+	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
+	this->scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	this->colorTint = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);	// Default to white
 	this->textureUnit = 0;
 	this->rotationMatrix = glm::mat4(1.0f);
 	this->translateMatrix = glm::translate(this->position);
 	this->scaleMatrix = glm::mat4(1.0f);
 	this->markedForDeletion = false;
+	this->numOfVertices = 36;			// Default verts in a cube
 }
 
-// Destructor
+// Destructor (protected virtual)
 GameObject::~GameObject()
 {
 	
@@ -74,6 +79,16 @@ void GameObject::SetEulerAngles(float xRotation, float yRotation, float zRotatio
 	this->eulerAngles = glm::vec3(xRotation, yRotation, zRotation);
 }
 
+void GameObject::SetColorTint(glm::vec4 newColor)
+{
+	this->colorTint = newColor;
+}
+
+void GameObject::SetColorTint(float red, float green, float blue, float alpha)
+{
+	this->colorTint = glm::vec4(red, green, blue, alpha);
+}
+
 void GameObject::SetTextureUnit(unsigned int newTextureUnit)
 {
 	this->textureUnit = newTextureUnit;
@@ -82,6 +97,11 @@ void GameObject::SetTextureUnit(unsigned int newTextureUnit)
 void GameObject::MarkForDeletion()
 {
 	this->markedForDeletion = true;
+}
+
+void GameObject::SetNumOfVertices(int newNumOfVerts)
+{
+	this->numOfVertices = newNumOfVerts;
 }
 
 glm::vec3 GameObject::GetPosition()
@@ -99,6 +119,11 @@ glm::vec3 GameObject::GetEulerAngles()
 	return this->eulerAngles;
 }
 
+glm::vec4 GameObject::GetColorTint()
+{
+	return this->colorTint;
+}
+
 unsigned int GameObject::GetTextureUnit()
 {
 	return this->textureUnit;
@@ -107,6 +132,11 @@ unsigned int GameObject::GetTextureUnit()
 bool GameObject::IsMarkedForDeletion()
 {
 	return this->markedForDeletion;
+}
+
+int GameObject::GetNumOfVertices()
+{
+	return this->numOfVertices;
 }
 
 //  Helpers ===========================================

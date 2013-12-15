@@ -32,11 +32,7 @@ GameObjectCtrlr* GameObjectCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameObjectCtrlr::InitializeGameObjects()
 {
-	for(int i = 0; i < 5; i++)
-	{
-		GameObject* go = new GameObject();
-		this->Add(go);
-	}
+	
 }
 
 // The main loop itself
