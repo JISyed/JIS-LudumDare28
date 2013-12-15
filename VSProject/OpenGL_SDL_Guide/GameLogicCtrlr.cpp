@@ -59,7 +59,7 @@ void GameLogicCtrlr::InitializeGame()
 	GameObjectCtrlr::GetInstance()->Add(player);
 
 	// Make a bullet
-	BulletObject* bullet = new BulletObject(glm::vec3(0.0f, 0.0f, 10.0f));
+	BulletObject* bullet = new BulletObject(glm::vec3(0.0f, 6.0f, 5.0f));
 	GameObjectCtrlr::GetInstance()->Add(bullet);
 
 	// Make an enemy

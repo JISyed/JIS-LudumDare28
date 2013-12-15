@@ -40,7 +40,7 @@ BulletObject::~BulletObject()
 void BulletObject::Update()
 {
 	// Delete bullet if to far up
-	if(this->position.z > 29.0f)
+	if(this->position.z > VISIBLE_TOP)
 	{
 		this->MarkForDeletion();
 		return;

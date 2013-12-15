@@ -3,6 +3,8 @@
 
 #define ENEMY_SPAWN_HEIGHT 25.0f
 #define EDGE_BORDER 15.0f
+#define VISIBLE_TOP 29.0f
+#define VISIBLE_BOTTOM (-3.0f)
 
 class GameObject;
 class PlayerObject;

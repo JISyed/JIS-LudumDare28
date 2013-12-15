@@ -16,6 +16,10 @@ public:
 	virtual void Update();					// Override GameObject's Update()
 
 private:
+	// Data ==========================
+
+	float speed;							// Speed of enemy
+
 	// Helpers =======================
 
 	void init();							// Initialization after construction
