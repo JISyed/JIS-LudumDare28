@@ -1,5 +1,7 @@
 #include "BulletObject.h"
 
+#include "GameLogicCtrlr.h"
+
 // Ctor / Dtor ===========================================
 
 // Constructor
@@ -29,7 +31,8 @@ BulletObject::BulletObject(glm::vec3 initialPos)
 // Destructor
 BulletObject::~BulletObject()
 {
-
+	// Clear reference to bullet in GameLogicCtrlr
+	GameLogicCtrlr::GetInstance()->SetBulletInstance(NULL);
 }
 
 // Routines ===============================================
@@ -58,6 +61,10 @@ void BulletObject::Update()
 // Initialization after construction
 void BulletObject::init()
 {
+	// Register to GameLogicCtrlr
+	GameLogicCtrlr::GetInstance()->SetBulletInstance(this);
+
+	// Set other peroperties
 	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
 	this->scale = glm::vec3(0.4f, 0.4f, 0.5f);
 	this->radius = 0.3f;

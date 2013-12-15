@@ -13,7 +13,7 @@
 // Constructor
 GameLogicCtrlr::GameLogicCtrlr()
 {
-	// Setup stuff here
+	this->gameOver = false;
 }
 
 // Public singleton instance getter
@@ -48,10 +48,11 @@ void GameLogicCtrlr::InitializeGame()
 
 		GameObjectCtrlr::GetInstance()->Add(obj);
 	}
-	*/
+	//*/
 
 	// Make random number between EDGE_BORDER and -EDGE_BORDER
-	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+	//float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+	float randomSpawnPos = 0.0f;
 
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -116,4 +117,26 @@ float GameLogicCtrlr::GetRandomNumber(int x)
 	float randomNumber = (float) ((std::rand() % ((2*x)+1) ) - x );
 
 	return randomNumber;
+}
+
+// Properties ===========================
+
+void GameLogicCtrlr::SetBulletInstance(GameObject* newBullet)
+{
+	this->bulletInstance = newBullet;
+}
+
+void GameLogicCtrlr::SetPlayerInstance(PlayerObject* newPlayer)
+{
+	this->playerInstance = newPlayer;
+}
+
+GameObject* GameLogicCtrlr::GetBulletInstance()
+{
+	return this->bulletInstance;
+}
+
+PlayerObject* GameLogicCtrlr::GetPlayerInstance()
+{
+	return this->playerInstance;
 }

@@ -1,5 +1,7 @@
 #include "PlayerObject.h"
 
+#include "GameLogicCtrlr.h"
+
 // Ctor / Dtor ===========================================
 
 // Constructor
@@ -29,7 +31,8 @@ PlayerObject::PlayerObject(glm::vec3 initialPos)
 // Destructor
 PlayerObject::~PlayerObject()
 {
-
+	// Clear reference with GameLogicCtrlr
+	GameLogicCtrlr::GetInstance()->SetPlayerInstance(NULL);
 }
 
 // Routines ===============================================
@@ -47,6 +50,10 @@ void PlayerObject::Update()
 // Initialization after construction
 void PlayerObject::init()
 {
+	// Register with GameLogicCtrlr
+	GameLogicCtrlr::GetInstance()->SetPlayerInstance(this);
+
+	// Set up other properties
 	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
 	this->scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	this->radius = 0.5f;

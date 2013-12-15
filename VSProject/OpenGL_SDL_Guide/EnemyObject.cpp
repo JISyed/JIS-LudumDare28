@@ -1,5 +1,7 @@
 #include "EnemyObject.h"
 
+#include "GameLogicCtrlr.h"
+
 // Ctor / Dtor ===========================================
 
 // Constructor
@@ -36,7 +38,18 @@ EnemyObject::~EnemyObject()
 
 void EnemyObject::Update()
 {
-
+	// Collision with bullet
+	GameObject* bullet = GameLogicCtrlr::GetInstance()->GetBulletInstance();
+	if(bullet != NULL)
+	{
+		if(GameLogicCtrlr::DoObjectsOverlap(this, bullet))
+		{
+			// Delete both enemy and bullet
+			this->MarkForDeletion();
+			bullet->MarkForDeletion();
+			return;
+		}
+	}
 
 	// Run parent's update
 	GameObject::Update();

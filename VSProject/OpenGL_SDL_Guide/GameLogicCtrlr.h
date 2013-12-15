@@ -5,6 +5,7 @@
 #define EDGE_BORDER 15.0f
 
 class GameObject;
+class PlayerObject;
 
 class GameLogicCtrlr
 {
@@ -30,6 +31,14 @@ public:
 	// Generate random number between x and -x
 	static float GetRandomNumber(int x);
 
+	// Properties ===========================
+
+	void SetBulletInstance(GameObject* newBullet);
+	void SetPlayerInstance(PlayerObject* newPlayer);
+
+	GameObject* GetBulletInstance();
+	PlayerObject* GetPlayerInstance();
+
 private:
 	// Singleton Management =================
 
@@ -38,7 +47,11 @@ private:
 
 	// Data =================================
 
+	bool gameOver;								// Is it Game Over yet?
+	GameObject* bulletInstance;					// The current bullet instance
+	PlayerObject* playerInstance;				// The current player instance
 
+	
 
 };
 
