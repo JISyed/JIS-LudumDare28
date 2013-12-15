@@ -1,6 +1,9 @@
 #ifndef GAME_LOGIC_CTRLR
 #define GAME_LOGIC_CTRLR
 
+#define ENEMY_SPAWN_HEIGHT 25.0f
+#define EDGE_BORDER 15.0f
+
 class GameObject;
 
 class GameLogicCtrlr
@@ -23,6 +26,9 @@ public:
 
 	// Check if two GameObjects overlap
 	static bool DoObjectsOverlap(GameObject* obj1, GameObject* obj2);
+
+	// Generate random number between x and -x
+	static float GetRandomNumber(int x);
 
 private:
 	// Singleton Management =================

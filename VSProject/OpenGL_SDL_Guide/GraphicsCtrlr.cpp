@@ -418,8 +418,8 @@ void GraphicsCtrlr::UploadUniformData()
 
 	// View matrix (Camera transform)
 	glm::mat4 view = glm::lookAt(
-		glm::vec3(10.0f, 0.0f, 5.0f),	// Camera position
-		glm::vec3(0.0f, 0.0f, 0.0f),	// Point centered on screen
+		glm::vec3(20.0f, 0.0f, 13.0f),	// Camera position
+		glm::vec3(0.0f, 0.0f, 13.0f),	// Point centered on screen
 		glm::vec3(0.0f, 0.0f, 1.0f)		// Up vector
 	);
 	GLint uniView = glGetUniformLocation(this->shaderProgram, "view");
@@ -428,7 +428,7 @@ void GraphicsCtrlr::UploadUniformData()
 	// Projection matrix (Camera properties)
 	float aspectRatio = (float) this->winHeight / (float) this->winHeight;
 	glm::mat4 proj = glm::perspective(
-		60.0f,							// vertical Field-Of-View (angle)
+		75.0f,							// vertical Field-Of-View (angle)
 		aspectRatio,					// aspect ratio
 		1.0f,							// near plane
 		50.0f							// far plane

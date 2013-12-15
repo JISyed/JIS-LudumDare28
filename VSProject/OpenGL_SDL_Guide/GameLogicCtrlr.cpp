@@ -2,6 +2,12 @@
 #include "GameObject.h"
 #include "GameObjectCtrlr.h"
 
+#include "PlayerObject.h"
+#include "BulletObject.h"
+#include "EnemyObject.h"
+
+#include <ctime>
+
 // Singleton ============================================
 
 // Constructor
@@ -29,6 +35,7 @@ GameLogicCtrlr* GameLogicCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameLogicCtrlr::InitializeGame()
 {
+	/*
 	for(int i = 1; i < 6; i++)
 	{
 		GameObject* obj = new GameObject();
@@ -41,6 +48,24 @@ void GameLogicCtrlr::InitializeGame()
 
 		GameObjectCtrlr::GetInstance()->Add(obj);
 	}
+	*/
+
+	// Make random number between EDGE_BORDER and -EDGE_BORDER
+	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+
+	// Make a player
+	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
+	GameObjectCtrlr::GetInstance()->Add(player);
+
+	// Make a bullet
+	BulletObject* bullet = new BulletObject(glm::vec3(0.0f, 0.0f, 10.0f));
+	GameObjectCtrlr::GetInstance()->Add(bullet);
+
+	// Make an enemy
+	EnemyObject* enemy = new EnemyObject(glm::vec3(0.0f, 
+												   randomSpawnPos, 
+												   ENEMY_SPAWN_HEIGHT));
+	GameObjectCtrlr::GetInstance()->Add(enemy);
 }
 
 // The main loop itself
@@ -79,4 +104,16 @@ bool GameLogicCtrlr::DoObjectsOverlap(GameObject* obj1, GameObject* obj2)
 
 	// Compare distance^2 with bothRadii^2
 	return squaredDistance < (bothRadii*bothRadii);
+}
+
+// Generate random number between x and -x
+float GameLogicCtrlr::GetRandomNumber(int x)
+{
+	// Use current time as seed
+	std::srand( (unsigned int) std::time(0) );
+
+	// Generate random number
+	float randomNumber = (float) ((std::rand() % ((2*x)+1) ) - x );
+
+	return randomNumber;
 }

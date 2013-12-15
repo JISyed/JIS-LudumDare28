@@ -6,12 +6,26 @@
 class BulletObject : public GameObject
 {
 public:
-	BulletObject();
+	// Ctors =========================
+
+	BulletObject();							// Default constructor
+	BulletObject(glm::vec3 initialPos);		// Position constructor
 	
+	// Routines ======================
+
+	virtual void Update();					// Override GameObject's Update()
 
 private:
+	// Data ==========================
+
+	float speed;							// Speed of bullet
+
+	// Helpers =======================
+
+	void init();							// Initialization after construction
 
 protected:
+	// Dtor ==========================
 
 	virtual ~BulletObject();
 };

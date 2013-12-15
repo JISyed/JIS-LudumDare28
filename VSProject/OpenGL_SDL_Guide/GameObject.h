@@ -49,14 +49,9 @@ private:
 
 	// Data ========================
 
-	glm::vec3 position;					// Position in world space
-	glm::vec3 scale;					// Mesh scale in 3 dimensions
-	glm::vec3 eulerAngles;				// Angle rotations in 3 dimentions
-	glm::vec4 colorTint;				// The color independent of textures
 	unsigned int textureUnit;			// Assigns a texture unit to an object
 	bool markedForDeletion;				// Will the object get deleted?
 	int numOfVertices;					// The number of vertices to draw
-	float radius;						// Half the length of the cube
 
 	// Matrices ====================
 
@@ -66,7 +61,6 @@ private:
 
 	// Helpers =====================
 
-	void updateMatrices();				// Update all tranformation matrices
 	glm::mat4 constructModelMatrix();	// Make the model matrix to send to shaders
 
 protected:
@@ -75,6 +69,18 @@ protected:
 
 	friend class GameObjectCtrlr;		// GameObjectCtrlr can access Destructor
 	virtual ~GameObject();				// Virtual Destructor
+
+	// Inheritable Routines ========
+
+	void updateMatrices();				// Update all tranformation matrices
+
+	// Inheritable Data ============
+
+	glm::vec3 position;					// Position in world space
+	glm::vec3 scale;					// Mesh scale in 3 dimensions
+	glm::vec3 eulerAngles;				// Angle rotations in 3 dimentions
+	glm::vec4 colorTint;				// The color independent of textures
+	float radius;						// Half the length of the cube
 };
 
 
