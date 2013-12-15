@@ -29,11 +29,15 @@ GameLogicCtrlr* GameLogicCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameLogicCtrlr::InitializeGame()
 {
-	for(int i = 0; i < 5; i++)
+	for(int i = 1; i < 6; i++)
 	{
 		GameObject* obj = new GameObject();
 
-		obj->SetPosition(-i-1, i+1, 0);
+		obj->SetPosition(-i, i, 0);
+		obj->SetEulerAngles(i*10, i*10, i*10);
+		obj->SetScale(i/5.0f, i/5.0f, i/5.0f);
+		obj->SetTextureUnit(0);
+		obj->SetColorTint(0.2f*i, 1.0f, 0.2f*i, 1.0f);
 
 		GameObjectCtrlr::GetInstance()->Add(obj);
 	}

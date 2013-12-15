@@ -15,7 +15,6 @@ GameObjectCtrlr::GameObjectCtrlr()
 // Public singleton instance getter
 GameObjectCtrlr* GameObjectCtrlr::GetInstance()
 {
-	std::cout << "Getting GameObjectCtrlr." << std::endl;
 	return GameObjectCtrlr::privGetInstance();
 }
 

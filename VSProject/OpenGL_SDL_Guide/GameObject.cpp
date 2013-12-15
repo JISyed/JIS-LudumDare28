@@ -51,6 +51,9 @@ void GameObject::Draw()
 	// Send uniform color to shaders
 	GraphicsCtrlr::GetInstance()->SetUniform(this->colorTint, "colorTint");
 
+	// Send texture unit to shader
+	GraphicsCtrlr::GetInstance()->SetUniform((int) this->textureUnit, "texUnit");
+
 	// Draw object
 	GraphicsCtrlr::GetInstance()->DrawTriangles(this->numOfVertices);
 }

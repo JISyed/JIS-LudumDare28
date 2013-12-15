@@ -57,55 +57,6 @@ void GraphicsCtrlr::LoopGraphics()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	/*
-	// Vary the uniform alpha every frame
-	float time = (float)clock() / (float)CLOCKS_PER_SEC;
-	GLint uniflucScale = glGetUniformLocation(this->shaderProgram, "flucScale");
-	glUniform1f(uniflucScale, (sin(time * 4.0f) + 1.0f) / 2.0f);
-
-	glm::mat4 trans;
-	GLint uniTrans = 0;
-
-	// Transform with GLM
-
-	// DRAW1
-
-	// Rotation matrix
-	trans = glm::rotate(
-		(float)clock() / (float)CLOCKS_PER_SEC * 180.0f,	// angle
-		glm::vec3(0.0f, 0.0f, 1.0f)							// axis
-	);
-
-	uniTrans = glGetUniformLocation(this->shaderProgram, "model");
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));	
-
-	// Draw with OpenGL
-
-	// Triangles, offset, draw 3 verts
-	glDrawArrays(GL_TRIANGLES, 0, 36); // Without EBOs
-
-	// DRAW2
-
-	// Rotation matrix
-	trans = glm::rotate(
-		180.0f,												// angle
-		glm::vec3(1.0f, 1.0f, 1.0f)							// axis
-	);
-
-	trans = glm::translate(
-		trans,
-		glm::vec3(-2.0f, -2.0f, 0.5f)
-	);
-
-	uniTrans = glGetUniformLocation(this->shaderProgram, "model");
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));	
-
-	// Draw with OpenGL
-
-	// Triangles, offset, draw 3 verts
-	glDrawArrays(GL_TRIANGLES, 0, 36); // Without EBOs
-	*/
-
 	GameObjectCtrlr::GetInstance()->DrawAll();
 }
 
