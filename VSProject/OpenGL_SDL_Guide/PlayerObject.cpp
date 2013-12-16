@@ -98,7 +98,7 @@ void PlayerObject::init()
 	// Set up other properties
 	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
 	this->scale = glm::vec3(0.8f, 0.8f, 1.0f);
-	this->radius = 0.5f;
+	this->radius = 0.45f;
 	this->colorTint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);	// Green
 
 	// Set speed

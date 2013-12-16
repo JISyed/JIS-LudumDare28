@@ -76,16 +76,14 @@ void GameObject::SetScale(glm::vec3 newScale)
 {
 	this->scale = newScale;
 
-	float average = (newScale.x + newScale.y + newScale.z) / 3.0f;
-	this->radius = average;
+	this->radius = newScale.y / 2.0f;
 }
 
 void GameObject::SetScale(float newX, float newY, float newZ)
 {
 	this->scale = glm::vec3(newX, newY, newZ);
 
-	float average = (newX + newY + newZ) / 3.0f;
-	this->radius = average;
+	this->radius = newY / 2.0f;
 }
 
 void GameObject::SetEulerAngles(glm::vec3 newEulerAngles)
