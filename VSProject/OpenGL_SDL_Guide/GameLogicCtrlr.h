@@ -51,6 +51,7 @@ public:
 	GameObject* GetBulletInstance();
 	PlayerObject* GetPlayerInstance();
 	bool IsGameOver();
+	unsigned int GetRandomSeed();
 
 private:
 	// Singleton Management =================
@@ -63,6 +64,8 @@ private:
 	bool gameOver;								// Is it Game Over yet?
 	GameObject* bulletInstance;					// The current bullet instance
 	PlayerObject* playerInstance;				// The current player instance
+	bool launchEnemies;							// Will enemies be launched;
+	unsigned int randomSeed;					// Seed for rand()
 
 	
 

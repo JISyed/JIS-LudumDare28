@@ -16,6 +16,8 @@
 GameLogicCtrlr::GameLogicCtrlr()
 {
 	this->gameOver = false;
+	this->launchEnemies = false;
+	this->randomSeed = 0;
 }
 
 // Public singleton instance getter
@@ -52,13 +54,14 @@ void GameLogicCtrlr::InitializeGame()
 	}
 	//*/
 
-	// Make random number between EDGE_BORDER and -EDGE_BORDER
-	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-	//float randomSpawnPos = 9.0f;
-
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	GameObjectCtrlr::GetInstance()->Add(player);
+
+	/*
+	// Make random number between EDGE_BORDER and -EDGE_BORDER
+	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+	//float randomSpawnPos = 9.0f;
 
 	// Make an enemy
 	EnemyObject* enemy = new EnemyObject(glm::vec3(0.0f, 
@@ -67,17 +70,36 @@ void GameLogicCtrlr::InitializeGame()
 	float randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
 	enemy->SetScale(randScale, randScale, randScale);
 	GameObjectCtrlr::GetInstance()->Add(enemy);
+	*/
 
 	this->gameOver = false;
+	this->launchEnemies = false;
 }
 
 // The main loop itself
 void GameLogicCtrlr::LoopGame()
 {
-	// Mark the program for reset if Game Over
-	if((this->IsGameOver()))
+	if(!launchEnemies)
 	{
-		
+		launchEnemies = true;
+
+		EnemyObject* enemy;
+		float randSpawnPos;
+		float randScale;
+
+		// Make 2 enemies
+		randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+		enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
+		randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
+		enemy->SetScale(randScale, randScale, randScale);
+		GameObjectCtrlr::GetInstance()->Add(enemy);
+
+		randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+		enemy = NULL;
+		enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos,  ENEMY_SPAWN_HEIGHT));
+		randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
+		enemy->SetScale(randScale, randScale, randScale);
+		GameObjectCtrlr::GetInstance()->Add(enemy);
 	}
 }
 
@@ -86,6 +108,7 @@ void GameLogicCtrlr::ReleaseGame()
 {
 	// Reset game over flag
 	this->gameOver = false;
+	this->launchEnemies = false;
 }
 
 // Routines ===============================================
@@ -118,7 +141,7 @@ bool GameLogicCtrlr::DoObjectsOverlap(GameObject* obj1, GameObject* obj2)
 float GameLogicCtrlr::GetRandomNumber(int x)
 {
 	// Use current time as seed
-	std::srand( (unsigned int) std::time(0) );
+	std::srand( GameLogicCtrlr::GetInstance()->GetRandomSeed() );
 
 	// Generate random number
 	float randomNumber = (float) ((std::rand() % ((2*x)+1) ) - x );
@@ -190,4 +213,9 @@ PlayerObject* GameLogicCtrlr::GetPlayerInstance()
 bool GameLogicCtrlr::IsGameOver()
 {
 	return this->gameOver;
+}
+
+unsigned int GameLogicCtrlr::GetRandomSeed()
+{
+	return (this->randomSeed++);
 }
