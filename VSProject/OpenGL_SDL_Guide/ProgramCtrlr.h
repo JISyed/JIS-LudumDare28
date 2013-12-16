@@ -20,10 +20,9 @@ class GameLogicCtrlr;
 class ProgramCtrlr
 {
 public:
-	// Ctor/Dtor =================
+	// Singleton =================
 
-	ProgramCtrlr();						// Ctor
-	~ProgramCtrlr();					// Dtor
+	static ProgramCtrlr* GetInstance();	// Singleton Instance Getter
 
 	// Program Structure =========
 
@@ -48,7 +47,10 @@ private:
 	static bool shouldReset;			// Flag if program should reset
 
 	// Helpers ===================
+
 	void ResetProgram();				// Actually resets the program
+	static ProgramCtrlr* privGetInstance();	// Private Instance Getter
+	ProgramCtrlr();						// Ctor
 
 };
 

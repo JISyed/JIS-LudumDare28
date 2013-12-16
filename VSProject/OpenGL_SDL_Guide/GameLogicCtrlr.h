@@ -36,6 +36,12 @@ public:
 	// Make Player shoot Bullet
 	void MakePlayerShootBullet();
 
+	// Make Player move left
+	void MakePlayerMoveLeft();
+
+	// Make Player move right
+	void MakePlayerMoveRight();
+
 	// Properties ===========================
 
 	void SetBulletInstance(GameObject* newBullet);

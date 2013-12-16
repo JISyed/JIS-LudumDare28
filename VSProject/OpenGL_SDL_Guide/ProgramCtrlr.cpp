@@ -18,10 +18,20 @@ ProgramCtrlr::ProgramCtrlr()
 
 }
 
-// Dtor
-ProgramCtrlr::~ProgramCtrlr()
-{
+// Singleton =================================================
 
+// Singleton Instance Getter
+ProgramCtrlr* ProgramCtrlr::GetInstance()
+{
+	return ProgramCtrlr::privGetInstance();
+}
+
+// Private Instance Getter
+ProgramCtrlr* ProgramCtrlr::privGetInstance()
+{
+	// Static object only initalizes once
+	static ProgramCtrlr instance;
+	return &instance;
 }
 
 // Structure =================================================
@@ -100,6 +110,26 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
 			{
 				this->gameLogicCtrlr->MakePlayerShootBullet();
+			}
+		}
+
+		// Move left
+		if (this->windowEvent.type == SDL_KEYDOWN && 
+			this->windowEvent.key.keysym.sym == SDLK_LEFT)
+		{
+			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
+			{
+				this->gameLogicCtrlr->MakePlayerMoveLeft();
+			}
+		}
+
+		// Move right
+		if (this->windowEvent.type == SDL_KEYDOWN && 
+			this->windowEvent.key.keysym.sym == SDLK_RIGHT)
+		{
+			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
+			{
+				this->gameLogicCtrlr->MakePlayerMoveRight();
 			}
 		}
 	}

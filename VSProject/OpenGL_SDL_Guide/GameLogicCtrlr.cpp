@@ -53,21 +53,19 @@ void GameLogicCtrlr::InitializeGame()
 	//*/
 
 	// Make random number between EDGE_BORDER and -EDGE_BORDER
-	//float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-	float randomSpawnPos = 9.0f;
+	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+	//float randomSpawnPos = 9.0f;
 
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	GameObjectCtrlr::GetInstance()->Add(player);
 
-	// Make a bullet
-	BulletObject* bullet = new BulletObject(glm::vec3(0.0f, 6.0f, 5.0f));
-	GameObjectCtrlr::GetInstance()->Add(bullet);
-
 	// Make an enemy
 	EnemyObject* enemy = new EnemyObject(glm::vec3(0.0f, 
 												   randomSpawnPos, 
 												   ENEMY_SPAWN_HEIGHT));
+	float randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
+	enemy->SetScale(randScale, randScale, randScale);
 	GameObjectCtrlr::GetInstance()->Add(enemy);
 
 	this->gameOver = false;
@@ -134,6 +132,24 @@ void GameLogicCtrlr::MakePlayerShootBullet()
 	if(this->playerInstance != NULL)
 	{
 		this->playerInstance->ShootBullet();
+	}
+}
+
+// Make Player move left
+void GameLogicCtrlr::MakePlayerMoveLeft()
+{
+	if(this->playerInstance != NULL)
+	{
+		this->playerInstance->MoveLeft();
+	}
+}
+
+// Make Player move right
+void GameLogicCtrlr::MakePlayerMoveRight()
+{
+	if(this->playerInstance != NULL)
+	{
+		this->playerInstance->MoveRight();
 	}
 }
 

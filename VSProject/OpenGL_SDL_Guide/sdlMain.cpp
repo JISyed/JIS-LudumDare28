@@ -3,20 +3,20 @@
 int main(int argc, char *argv[])
 {
 	// Create the program controller
-	ProgramCtrlr programController;
+	ProgramCtrlr* programController = ProgramCtrlr::GetInstance();
 
 	// Initialize everything needed for the program
-	programController.InitializeProgram();
+	programController->InitializeProgram();
 
 	// Main loop
 	bool shouldQuit = false;
 	while (!shouldQuit)
 	{
-		programController.LoopProgram(shouldQuit);
+		programController->LoopProgram(shouldQuit);
 	}
 
 	// Delete everything the program made
-	programController.FinalizeProgram();
+	programController->FinalizeProgram();
 
 	// Quit
     return 0;

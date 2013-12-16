@@ -61,6 +61,32 @@ void PlayerObject::ShootBullet()
 	}
 }
 
+// Move left
+void PlayerObject::MoveLeft()
+{
+	// Move along negative Y
+	if(this->position.y > -EDGE_BORDER)
+	{
+		glm::vec3 newPosition = this->position;
+		float yDisplace = newPosition.y - this->speed;
+		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
+		this->SetPosition(newPosition);
+	}
+}
+
+// Move right
+void PlayerObject::MoveRight()
+{
+	// Move along positve Y
+	if(this->position.y < EDGE_BORDER)
+	{
+		glm::vec3 newPosition = this->position;
+		float yDisplace = newPosition.y + this->speed;
+		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
+		this->SetPosition(newPosition);
+	}
+}
+
 // Helpers ================================================
 
 // Initialization after construction
@@ -74,4 +100,7 @@ void PlayerObject::init()
 	this->scale = glm::vec3(0.8f, 0.8f, 1.0f);
 	this->radius = 0.5f;
 	this->colorTint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);	// Green
+
+	// Set speed
+	this->speed = 0.4f;
 }

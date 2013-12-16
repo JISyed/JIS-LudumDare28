@@ -16,8 +16,14 @@ public:
 
 	virtual void Update();					// Override GameObject's Update()
 	void ShootBullet();						// Fire BulletObject from current position
+	void MoveLeft();						// Move left
+	void MoveRight();						// Move right
 
 private:
+	// Data ==========================
+
+	float speed;							// Speed of player
+
 	// Helpers =======================
 
 	void init();							// Initialization after construction
