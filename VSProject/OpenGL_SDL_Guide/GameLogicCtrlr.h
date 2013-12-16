@@ -66,6 +66,8 @@ private:
 	PlayerObject* playerInstance;				// The current player instance
 	bool launchEnemies;							// Will enemies be launched;
 	unsigned int randomSeed;					// Seed for rand()
+	long int launchTimeStamp;					// Timestamp for launching enemies
+	int launchTimeInterval;						// Interval to launch enemies
 
 	
 

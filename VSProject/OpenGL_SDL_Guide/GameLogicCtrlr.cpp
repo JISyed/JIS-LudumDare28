@@ -18,6 +18,8 @@ GameLogicCtrlr::GameLogicCtrlr()
 	this->gameOver = false;
 	this->launchEnemies = false;
 	this->randomSeed = 0;
+	this->launchTimeInterval = 1;
+	this->launchTimeStamp = (long int) 0;
 }
 
 // Public singleton instance getter
@@ -83,23 +85,28 @@ void GameLogicCtrlr::LoopGame()
 	{
 		launchEnemies = true;
 
+		// Mark time stamp
+		this->launchTimeStamp = (long int) std::time(NULL) + this->launchTimeInterval;
+
 		EnemyObject* enemy;
 		float randSpawnPos;
 		float randScale;
 
-		// Make 2 enemies
-		randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-		enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
-		randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
-		enemy->SetScale(randScale, randScale, randScale);
-		GameObjectCtrlr::GetInstance()->Add(enemy);
+		// Make some enemies
+		for(int i = 1; i < 6; i++)
+		{
+			randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
+			enemy = NULL;
+			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
+			randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
+			enemy->SetScale(randScale, randScale, randScale);
+			GameObjectCtrlr::GetInstance()->Add(enemy);
+		}
+	}
 
-		randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-		enemy = NULL;
-		enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos,  ENEMY_SPAWN_HEIGHT));
-		randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
-		enemy->SetScale(randScale, randScale, randScale);
-		GameObjectCtrlr::GetInstance()->Add(enemy);
+	if( ((long int) std::time(NULL) > this->launchTimeStamp) && launchEnemies)
+	{
+		launchEnemies = false;
 	}
 }
 
