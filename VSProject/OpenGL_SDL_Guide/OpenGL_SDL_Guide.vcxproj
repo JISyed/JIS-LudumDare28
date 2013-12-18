@@ -89,6 +89,7 @@
     <ClCompile Include="sdlMain.cpp" />
     <ClCompile Include="TextureCtrlr.cpp" />
     <ClCompile Include="TextureObject.cpp" />
+    <ClCompile Include="TimeCtrlr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\firstFrag.glsl" />
@@ -106,6 +107,7 @@
     <ClInclude Include="ProgramCtrlr.h" />
     <ClInclude Include="TextureCtrlr.h" />
     <ClInclude Include="TextureObject.h" />
+    <ClInclude Include="TimeCtrlr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

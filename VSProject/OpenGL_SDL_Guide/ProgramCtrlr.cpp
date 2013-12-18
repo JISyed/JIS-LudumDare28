@@ -3,6 +3,7 @@
 #include "GraphicsCtrlr.h"
 #include "GameObjectCtrlr.h"
 #include "GameLogicCtrlr.h"
+#include "TimeCtrlr.h"
 
 #include <iostream>
 
@@ -70,6 +71,10 @@ void ProgramCtrlr::InitializeProgram()
 	// Initialize everything for the actual game
 	this->gameLogicCtrlr->InitializeGame();
 	ProgramCtrlr::shouldReset = false;
+
+	// Initialize TimeCtrlr for time functionality
+	this->timeCtrlr = TimeCtrlr::GetInstance();
+	timeCtrlr->InitializeTime();
 }
 
 // Run the program every frame
@@ -134,6 +139,9 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 		}
 	}
 
+	// Update time
+	this->timeCtrlr->LoopTime();
+
 	// Update GameLogic
 	this->gameLogicCtrlr->LoopGame();
 
@@ -164,6 +172,9 @@ void ProgramCtrlr::FinalizeProgram()
 
 	// Delete everything for graphics
 	graphicsCtrlr->ReleaseGraphics();
+
+	// Release things for time functionality
+	timeCtrlr->FinalizeTime();
 
 	// Delete graphics canvas (OpenGL context)
 	SDL_GL_DeleteContext(this->theGLContext);
