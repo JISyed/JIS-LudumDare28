@@ -1,6 +1,7 @@
 #include "BulletObject.h"
 
 #include "GameLogicCtrlr.h"
+#include "TimeCtrlr.h"
 
 // Ctor / Dtor ===========================================
 
@@ -48,7 +49,9 @@ void BulletObject::Update()
 
 	// Move along positive Z
 	glm::vec3 newPosition = this->position;
-	float zDisplace = newPosition.z + this->speed;
+	//float zDisplace = newPosition.z + this->speed;	// Before dt
+	float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+	float zDisplace = newPosition.z + (this->speed * dt);
 	newPosition = glm::vec3(newPosition.x, newPosition.y, zDisplace);
 	this->SetPosition(newPosition);
 
@@ -71,5 +74,6 @@ void BulletObject::init()
 	this->colorTint = glm::vec4(0.0f, 0.3f, 1.0f, 1.0f);	// Blue
 
 	// Set bullet speed
-	this->speed = 0.2f;
+	//this->speed = 0.2f;		// Before delta time
+	this->speed = 10.0f;
 }

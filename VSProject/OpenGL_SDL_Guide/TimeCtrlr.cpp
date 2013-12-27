@@ -52,7 +52,7 @@ void TimeCtrlr::FinalizeTime()
 
 // Routines ================================================
 
-// Get time last loop completed	
+// Get time last loop completed	(in seconds)
 float TimeCtrlr::GetDeltaTime()
 {
 	return this->loopDuration.count();

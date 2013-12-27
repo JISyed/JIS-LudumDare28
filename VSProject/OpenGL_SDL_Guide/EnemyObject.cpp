@@ -2,6 +2,7 @@
 
 #include "GameLogicCtrlr.h"
 #include "PlayerObject.h"
+#include "TimeCtrlr.h"
 
 // Ctor / Dtor ===========================================
 
@@ -72,7 +73,9 @@ void EnemyObject::Update()
 
 	// Move along positive Z
 	glm::vec3 newPosition = this->position;
-	float zDisplace = newPosition.z - this->speed;
+	//float zDisplace = newPosition.z - this->speed;	// Before dt
+	float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+	float zDisplace = newPosition.z - (this->speed * dt);
 	newPosition = glm::vec3(newPosition.x, newPosition.y, zDisplace);
 	this->SetPosition(newPosition);
 
@@ -92,5 +95,6 @@ void EnemyObject::init()
 	this->colorTint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);	// Red
 
 	// Set speed
-	this->speed = 0.2f;
+	//this->speed = 0.2f;		// Before delta time
+	this->speed = 7.5f;
 }

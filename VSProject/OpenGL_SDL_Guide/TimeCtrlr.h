@@ -23,7 +23,7 @@ public:
 
 	// Routines ==================
 
-	float GetDeltaTime();					// Get time last loop completed
+	float GetDeltaTime();					// Get time last loop completed (in seconds)
 
 private:
 	// Singleton =================
