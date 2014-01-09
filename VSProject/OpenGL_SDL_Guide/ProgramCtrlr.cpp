@@ -4,6 +4,7 @@
 #include "GameObjectCtrlr.h"
 #include "GameLogicCtrlr.h"
 #include "TimeCtrlr.h"
+#include "RandomCtrlr.h"
 
 #include <iostream>
 
@@ -75,6 +76,10 @@ void ProgramCtrlr::InitializeProgram()
 	// Initialize TimeCtrlr for time functionality
 	this->timeCtrlr = TimeCtrlr::GetInstance();
 	timeCtrlr->InitializeTime();
+
+	// Initialize RandomCtrlr for random generation
+	this->randomCtrlr = RandomCtrlr::GetInstance();
+	this->randomCtrlr->InitializeRand();
 }
 
 // Run the program every frame
@@ -142,6 +147,9 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 	// Update time
 	this->timeCtrlr->LoopTime();
 
+	// Update randomizer
+	this->randomCtrlr->LoopRand();
+
 	// Update GameLogic
 	this->gameLogicCtrlr->LoopGame();
 
@@ -171,10 +179,13 @@ void ProgramCtrlr::FinalizeProgram()
 	this->gameObjectCtrlr->ReleaseGameObjects();
 
 	// Delete everything for graphics
-	graphicsCtrlr->ReleaseGraphics();
+	this->graphicsCtrlr->ReleaseGraphics();
+
+	// Release things for randomization
+	this->randomCtrlr->FinalizeRand();
 
 	// Release things for time functionality
-	timeCtrlr->FinalizeTime();
+	this->timeCtrlr->FinalizeTime();
 
 	// Delete graphics canvas (OpenGL context)
 	SDL_GL_DeleteContext(this->theGLContext);

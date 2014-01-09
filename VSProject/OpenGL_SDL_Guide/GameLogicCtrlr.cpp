@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "GameObjectCtrlr.h"
 #include "ProgramCtrlr.h"
+#include "RandomCtrlr.h"
 
 #include "PlayerObject.h"
 #include "BulletObject.h"

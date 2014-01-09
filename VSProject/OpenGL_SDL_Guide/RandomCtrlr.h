@@ -1,9 +1,6 @@
 #ifndef RANDOM_CTRLR
 #define RANDOM_CTRLR
 
-#include <random>
-#include <cstdlib>
-
 class RandomCtrlr
 {
 public:
@@ -19,13 +16,18 @@ public:
 
 	// Routines ==================
 
-	
+	int Range(int min, int max);			// Get an int between min and max
+	float Range(float min, float max);		// Get a float between min and max
 
 private:
 	// Singleton =================
 
 	static RandomCtrlr* privGetInstance();	// Private Instance Getter
 	RandomCtrlr();							// Private ctor
+
+	// Helpers ===================
+
+	unsigned long NewSeed();					// Get a new time-based seed
 
 	// Data ======================
 

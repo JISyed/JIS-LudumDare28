@@ -16,6 +16,7 @@ class GraphicsCtrlr;
 class GameObjectCtrlr;
 class GameLogicCtrlr;
 class TimeCtrlr;
+class RandomCtrlr;
 
 // This should be made in the stack
 class ProgramCtrlr
@@ -42,6 +43,7 @@ private:
 	GameObjectCtrlr* gameObjectCtrlr;	// STATIC instance of GameObject manager
 	GameLogicCtrlr* gameLogicCtrlr;		// STATIC instance of game's logic
 	TimeCtrlr* timeCtrlr;				// STATIC instance to time functionality
+	RandomCtrlr* randomCtrlr;			// STATIC instance to the random generator
 	SDL_Window* theWindow;				// Game window handled by SDL
 	SDL_GLContext theGLContext;			// OpenGL graphics context
 	SDL_Event windowEvent;				// Program event handled by SDL per frame
