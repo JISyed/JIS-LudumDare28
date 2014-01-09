@@ -86,6 +86,7 @@
     <ClCompile Include="GraphicsCtrlr.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="ProgramCtrlr.cpp" />
+    <ClCompile Include="RandomCtrlr.cpp" />
     <ClCompile Include="sdlMain.cpp" />
     <ClCompile Include="TextureCtrlr.cpp" />
     <ClCompile Include="TextureObject.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="GraphicsCtrlr.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="ProgramCtrlr.h" />
+    <ClInclude Include="RandomCtrlr.h" />
     <ClInclude Include="TextureCtrlr.h" />
     <ClInclude Include="TextureObject.h" />
     <ClInclude Include="TimeCtrlr.h" />

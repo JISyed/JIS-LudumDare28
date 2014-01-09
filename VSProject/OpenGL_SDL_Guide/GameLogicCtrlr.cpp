@@ -152,7 +152,7 @@ float GameLogicCtrlr::GetRandomNumber(int x)
 
 	// Generate random number
 	float randomNumber = (float) ((std::rand() % ((2*x)+1) ) - x );
-
+	
 	return randomNumber;
 }
 
