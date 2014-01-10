@@ -27,11 +27,11 @@ private:
 
 	// Helpers ===================
 
-	unsigned long NewSeed();					// Get a new time-based seed
+	unsigned long NewSeed();				// Get a new time-based seed
 
 	// Data ======================
 
-	
+	unsigned long timeSeed;					// Time since epoch
 };
 
 #endif

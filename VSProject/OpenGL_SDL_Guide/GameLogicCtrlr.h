@@ -31,7 +31,7 @@ public:
 	static bool DoObjectsOverlap(GameObject* obj1, GameObject* obj2);
 
 	// Generate random number between x and -x
-	static float GetRandomNumber(int x);
+	//static float GetRandomNumber(int x);
 
 	// Make Player shoot Bullet
 	void MakePlayerShootBullet();
@@ -51,7 +51,7 @@ public:
 	GameObject* GetBulletInstance();
 	PlayerObject* GetPlayerInstance();
 	bool IsGameOver();
-	unsigned int GetRandomSeed();
+	//unsigned int GetRandomSeed();
 
 private:
 	// Singleton Management =================
@@ -65,7 +65,7 @@ private:
 	GameObject* bulletInstance;					// The current bullet instance
 	PlayerObject* playerInstance;				// The current player instance
 	bool launchEnemies;							// Will enemies be launched;
-	unsigned int randomSeed;					// Seed for rand()
+	//unsigned int randomSeed;					// Seed for rand()
 	long int launchTimeStamp;					// Timestamp for launching enemies
 	int launchTimeInterval;						// Interval to launch enemies
 
