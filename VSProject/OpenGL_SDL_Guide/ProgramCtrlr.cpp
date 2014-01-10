@@ -80,6 +80,11 @@ void ProgramCtrlr::InitializeProgram()
 	// Initialize RandomCtrlr for random generation
 	this->randomCtrlr = RandomCtrlr::GetInstance();
 	this->randomCtrlr->InitializeRand();
+
+	// Initialized struct of key holding states (keyboard)
+	this->keysHeld.Left = false;
+	this->keysHeld.Right = false;
+	this->keysHeld.Space = false;
 }
 
 // Run the program every frame
@@ -113,36 +118,36 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 			}
 		}
 
-		// Shoot bullet (only if player exists)
-		if (this->windowEvent.type == SDL_KEYDOWN && 
-			this->windowEvent.key.keysym.sym == SDLK_SPACE)
+		// Update player input key down events
+		if(this->windowEvent.type == SDL_KEYDOWN)
 		{
-			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
+			switch(this->windowEvent.key.keysym.sym)
 			{
-				this->gameLogicCtrlr->MakePlayerShootBullet();
+				case SDLK_LEFT: this->keysHeld.Left = true; break;
+				case SDLK_RIGHT: this->keysHeld.Right = true; break;
+				case SDLK_SPACE: this->keysHeld.Space = true; break;
 			}
 		}
 
-		// Move left
-		if (this->windowEvent.type == SDL_KEYDOWN && 
-			this->windowEvent.key.keysym.sym == SDLK_LEFT)
+		// Uppdate player input key up events
+		if(this->windowEvent.type == SDL_KEYUP)
 		{
-			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
+			switch(this->windowEvent.key.keysym.sym)
 			{
-				this->gameLogicCtrlr->MakePlayerMoveLeft();
-			}
-		}
-
-		// Move right
-		if (this->windowEvent.type == SDL_KEYDOWN && 
-			this->windowEvent.key.keysym.sym == SDLK_RIGHT)
-		{
-			if(this->gameLogicCtrlr->GetPlayerInstance() != NULL)
-			{
-				this->gameLogicCtrlr->MakePlayerMoveRight();
+				case SDLK_LEFT: this->keysHeld.Left = false; break;
+				case SDLK_RIGHT: this->keysHeld.Right = false; break;
+				case SDLK_SPACE: this->keysHeld.Space = false; break;
 			}
 		}
 	}
+
+	// Update input
+	if(this->keysHeld.Left)
+		this->gameLogicCtrlr->MakePlayerMoveLeft();
+	if(this->keysHeld.Right) 
+		this->gameLogicCtrlr->MakePlayerMoveRight();
+	if(this->keysHeld.Space)
+		this->gameLogicCtrlr->MakePlayerShootBullet();
 
 	// Update time
 	this->timeCtrlr->LoopTime();

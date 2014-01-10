@@ -18,7 +18,6 @@ GameLogicCtrlr::GameLogicCtrlr()
 {
 	this->gameOver = false;
 	this->launchEnemies = false;
-	//this->randomSeed = 0;
 	this->launchTimeInterval = 1;
 	this->launchTimeStamp = (long int) 0;
 }
@@ -42,38 +41,9 @@ GameLogicCtrlr* GameLogicCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameLogicCtrlr::InitializeGame()
 {
-	/*
-	for(int i = 1; i < 6; i++)
-	{
-		GameObject* obj = new GameObject();
-
-		obj->SetPosition((float) -i, (float) i, 0);
-		obj->SetEulerAngles(i*10.0f, i*10.0f, i*10.0f);
-		obj->SetScale(i/5.0f, i/5.0f, i/5.0f);
-		obj->SetTextureUnit(0);
-		obj->SetColorTint(0.2f*i, 1.0f, 0.2f*i, 1.0f);
-
-		GameObjectCtrlr::GetInstance()->Add(obj);
-	}
-	//*/
-
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	GameObjectCtrlr::GetInstance()->Add(player);
-
-	/*
-	// Make random number between EDGE_BORDER and -EDGE_BORDER
-	float randomSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
-	//float randomSpawnPos = 9.0f;
-
-	// Make an enemy
-	EnemyObject* enemy = new EnemyObject(glm::vec3(0.0f, 
-												   randomSpawnPos, 
-												   ENEMY_SPAWN_HEIGHT));
-	float randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
-	enemy->SetScale(randScale, randScale, randScale);
-	GameObjectCtrlr::GetInstance()->Add(enemy);
-	*/
 
 	this->gameOver = false;
 	this->launchEnemies = false;
@@ -96,14 +66,10 @@ void GameLogicCtrlr::LoopGame()
 		// Make some enemies
 		for(int i = 1; i < 6; i++)
 		{
-			//randSpawnPos = GameLogicCtrlr::GetRandomNumber((int) EDGE_BORDER);
 			randSpawnPos = RandomCtrlr::GetInstance()->Range(-EDGE_BORDER, EDGE_BORDER);
 			std::cout << "Spawn: " << randSpawnPos << std::endl;
 			enemy = NULL;
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
-			//randScale = ((GameLogicCtrlr::GetRandomNumber(2) + 2) / 2.0f) + 0.5f;
-			//randScale = RandomCtrlr::GetInstance()->Range(-2.0f, 2.0f);
-			//randScale = ((randScale + 2.0f) / 2.0f) + 0.5f;
 			randScale = RandomCtrlr::GetInstance()->Range(0.5f, 3.0f);
 			std::cout << "Scale: " << randScale << std::endl;
 			enemy->SetScale(randScale, randScale, randScale);
@@ -150,20 +116,6 @@ bool GameLogicCtrlr::DoObjectsOverlap(GameObject* obj1, GameObject* obj2)
 	// Compare distance^2 with bothRadii^2
 	return squaredDistance < (bothRadii*bothRadii);
 }
-
-/*
-// Generate random number between x and -x
-float GameLogicCtrlr::GetRandomNumber(int x)
-{
-	// Use current time as seed
-	std::srand( GameLogicCtrlr::GetInstance()->GetRandomSeed() );
-
-	// Generate random number
-	float randomNumber = (float) ((std::rand() % ((2*x)+1) ) - x );
-	
-	return randomNumber;
-}
-*/
 
 // Make Player shoot Bullet
 void GameLogicCtrlr::MakePlayerShootBullet()
@@ -230,10 +182,3 @@ bool GameLogicCtrlr::IsGameOver()
 {
 	return this->gameOver;
 }
-
-/*
-unsigned int GameLogicCtrlr::GetRandomSeed()
-{
-	return (this->randomSeed++);
-}
-*/

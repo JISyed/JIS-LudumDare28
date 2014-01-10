@@ -3,6 +3,7 @@
 #include "GameLogicCtrlr.h"
 #include "BulletObject.h"
 #include "GameObjectCtrlr.h"
+#include "TimeCtrlr.h"
 
 // Ctor / Dtor ===========================================
 
@@ -68,7 +69,9 @@ void PlayerObject::MoveLeft()
 	if(this->position.y > -EDGE_BORDER)
 	{
 		glm::vec3 newPosition = this->position;
-		float yDisplace = newPosition.y - this->speed;
+		//float yDisplace = newPosition.y - this->speed;	// Before dt
+		float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+		float yDisplace = newPosition.y - (this->speed * dt);
 		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
 		this->SetPosition(newPosition);
 	}
@@ -81,7 +84,9 @@ void PlayerObject::MoveRight()
 	if(this->position.y < EDGE_BORDER)
 	{
 		glm::vec3 newPosition = this->position;
-		float yDisplace = newPosition.y + this->speed;
+		//float yDisplace = newPosition.y + this->speed;	// Before dt
+		float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+		float yDisplace = newPosition.y + (this->speed * dt);
 		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
 		this->SetPosition(newPosition);
 	}
@@ -102,5 +107,5 @@ void PlayerObject::init()
 	this->colorTint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);	// Green
 
 	// Set speed
-	this->speed = 0.4f;
+	this->speed = 10.0f;
 }

@@ -18,7 +18,15 @@ class GameLogicCtrlr;
 class TimeCtrlr;
 class RandomCtrlr;
 
-// This should be made in the stack
+// Data struct to hold key holding states
+struct KeysHeld
+{
+	bool Space;
+	bool Left;
+	bool Right;
+};
+
+// Program Controller Class
 class ProgramCtrlr
 {
 public:
@@ -47,6 +55,8 @@ private:
 	SDL_Window* theWindow;				// Game window handled by SDL
 	SDL_GLContext theGLContext;			// OpenGL graphics context
 	SDL_Event windowEvent;				// Program event handled by SDL per frame
+
+	KeysHeld keysHeld;					// Tells which keys are held down
 
 	static bool shouldReset;			// Flag if program should reset
 
