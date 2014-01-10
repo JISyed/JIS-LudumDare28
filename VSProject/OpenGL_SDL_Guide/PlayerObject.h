@@ -23,6 +23,7 @@ private:
 	// Data ==========================
 
 	float speed;							// Speed of player
+	float accel;							// Acceleration
 
 	// Helpers =======================
 

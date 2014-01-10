@@ -20,6 +20,7 @@ private:
 	// Data ==========================
 
 	float speed;							// Speed of bullet
+	float accel;							// Acceleration
 
 	// Helpers =======================
 

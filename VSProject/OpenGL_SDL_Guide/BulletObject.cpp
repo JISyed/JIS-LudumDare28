@@ -51,6 +51,7 @@ void BulletObject::Update()
 	glm::vec3 newPosition = this->position;
 	//float zDisplace = newPosition.z + this->speed;	// Before dt
 	float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+	this->speed = this->speed + (this->accel * dt);
 	float zDisplace = newPosition.z + (this->speed * dt);
 	newPosition = glm::vec3(newPosition.x, newPosition.y, zDisplace);
 	this->SetPosition(newPosition);
@@ -76,4 +77,5 @@ void BulletObject::init()
 	// Set bullet speed
 	//this->speed = 0.2f;		// Before delta time
 	this->speed = 10.0f;
+	this->accel = 20.0f;
 }

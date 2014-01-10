@@ -20,6 +20,7 @@ private:
 	// Data ==========================
 
 	float speed;							// Speed of enemy
+	float accel;							// Acceleration
 
 	// Helpers =======================
 
