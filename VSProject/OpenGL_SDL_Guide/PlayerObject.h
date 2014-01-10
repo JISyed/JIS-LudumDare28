@@ -24,6 +24,7 @@ private:
 
 	float speed;							// Speed of player
 	float accel;							// Acceleration
+	float deccel;							// Decelleration
 
 	// Helpers =======================
 

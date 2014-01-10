@@ -108,4 +108,6 @@ void PlayerObject::init()
 
 	// Set speed
 	this->speed = 10.0f;
+	this->accel = 10.0f;
+	this->deccel = 3.3f;
 }

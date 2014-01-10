@@ -1,7 +1,7 @@
 #ifndef GAME_LOGIC_CTRLR
 #define GAME_LOGIC_CTRLR
 
-#define ENEMY_SPAWN_HEIGHT 25.0f
+#define ENEMY_SPAWN_HEIGHT 27.0f
 #define EDGE_BORDER 15.0f
 #define VISIBLE_TOP 30.0f
 #define VISIBLE_BOTTOM (-5.0f)

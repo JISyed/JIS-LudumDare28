@@ -3,6 +3,7 @@
 #include "GameObjectCtrlr.h"
 #include "ProgramCtrlr.h"
 #include "RandomCtrlr.h"
+#include "TimeCtrlr.h"
 
 #include "PlayerObject.h"
 #include "BulletObject.h"
