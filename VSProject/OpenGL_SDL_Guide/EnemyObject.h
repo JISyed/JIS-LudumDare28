@@ -21,6 +21,7 @@ private:
 
 	float speed;							// Speed of enemy
 	float accel;							// Acceleration
+	bool alreadyPassedByPlayer;				// Did the enemy already pass by the player?
 
 	// Helpers =======================
 

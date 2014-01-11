@@ -55,14 +55,25 @@ void EnemyObject::Update()
 		}
 	}
 
-	// Collision with player
+	// Collision with player and score keeping
 	PlayerObject* player = GameLogicCtrlr::GetInstance()->GetPlayerInstance();
 	if(player != NULL)
 	{
+		// Collision with player
 		if(GameLogicCtrlr::DoObjectsOverlap(this, player))
 		{
 			// Delete player only
 			player->MarkForDeletion();
+		}
+
+		// Score increments when an enemy passes by the player
+		if( ! this->alreadyPassedByPlayer )
+		{
+			if(this->position.z < player->GetPosition().z)
+			{
+				this->alreadyPassedByPlayer = true;
+				GameLogicCtrlr::GetInstance()->IncrementScore();
+			}
 		}
 	}
 
@@ -98,6 +109,7 @@ void EnemyObject::init()
 	this->scale = glm::vec3(0.8f, 0.8f, 1.0f);
 	this->radius = 0.5f;
 	this->colorTint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);	// Red
+	this->alreadyPassedByPlayer = false;
 
 	// Set speed and acceleration
 	float sso = diffScl->GetSpawnSpeedOffset();

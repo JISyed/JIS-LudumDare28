@@ -48,6 +48,7 @@ void GameLogicCtrlr::InitializeGame()
 
 	this->gameOver = false;
 	this->launchedEnemies = false;
+	this->score = 0;
 }
 
 // The main loop itself
@@ -103,6 +104,7 @@ void GameLogicCtrlr::ReleaseGame()
 	// Reset game over flag
 	this->gameOver = false;
 	this->launchedEnemies = false;
+	this->score = 0;
 }
 
 // Routines ===============================================
@@ -156,6 +158,13 @@ void GameLogicCtrlr::MakePlayerMoveRight()
 	{
 		this->playerInstance->MoveRight();
 	}
+}
+
+// Increase the score by one
+void GameLogicCtrlr::IncrementScore()
+{
+	this->score++;
+	std::cout << "Score: " << this->score << std::endl;
 }
 
 // Properties ===========================

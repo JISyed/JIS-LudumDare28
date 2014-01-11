@@ -39,6 +39,9 @@ public:
 	// Make Player move right
 	void MakePlayerMoveRight();
 
+	// Increase the score by one
+	void IncrementScore();
+
 	// Properties ===========================
 
 	void SetBulletInstance(GameObject* newBullet);
@@ -63,6 +66,7 @@ private:
 	bool launchedEnemies;						// Did the enemies launch?
 	float launchTimeStamp;						// Timestamp for launching enemies (in seconds)
 	float launchTimeInterval;					// Interval to launch enemies (in seconds)
+	int score;									// How many enemies passed by the player
 
 };
 
