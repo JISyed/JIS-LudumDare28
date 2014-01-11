@@ -56,10 +56,10 @@ private:
 	GameLogicCtrlr();							// Private constructor
 
 	// Data =================================
-
-	bool gameOver;								// Is it Game Over yet?
+	
 	GameObject* bulletInstance;					// The current bullet instance
 	PlayerObject* playerInstance;				// The current player instance
+	bool gameOver;								// Is it Game Over yet?
 	bool launchedEnemies;						// Did the enemies launch?
 	float launchTimeStamp;						// Timestamp for launching enemies (in seconds)
 	float launchTimeInterval;					// Interval to launch enemies (in seconds)

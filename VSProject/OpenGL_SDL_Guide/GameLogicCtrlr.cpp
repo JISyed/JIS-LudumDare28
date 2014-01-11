@@ -53,26 +53,33 @@ void GameLogicCtrlr::InitializeGame()
 void GameLogicCtrlr::LoopGame()
 {
 	TimeCtrlr* time = TimeCtrlr::GetInstance();
+	RandomCtrlr* rand = RandomCtrlr::GetInstance();
 
 	if(!launchedEnemies && !this->IsGameOver())
 	{
 		launchedEnemies = true;
 
 		// Mark time stamp
+		this->launchTimeInterval = rand->Range(0.3f, 0.8f);
 		this->launchTimeStamp = time->GetRunTime() + this->launchTimeInterval;
 
 		EnemyObject* enemy;
 		float randSpawnPos;
 		float randScale;
 
+		int spawnAmount = rand->Range(1, 2);
+
 		// Make some enemies
-		for(int i = 1; i < 6; i++)
+		for(int i = 0; i < spawnAmount; i++)
 		{
-			randSpawnPos = RandomCtrlr::GetInstance()->Range(-EDGE_BORDER, EDGE_BORDER);
+			randSpawnPos = rand->Range(-EDGE_BORDER, EDGE_BORDER);
+
 			enemy = NULL;
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
-			randScale = RandomCtrlr::GetInstance()->Range(0.5f, 3.0f);
+			
+			randScale = rand->Range(0.75f, 2.0f);
 			enemy->SetScale(randScale, randScale, randScale + randScale * 0.2f);
+			
 			GameObjectCtrlr::GetInstance()->Add(enemy);
 		}
 	}
