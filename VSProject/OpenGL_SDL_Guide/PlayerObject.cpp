@@ -45,7 +45,28 @@ PlayerObject::~PlayerObject()
 
 void PlayerObject::Update()
 {
+	// Delta time
+	float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
 
+	// Auto decelerate
+	if(this->speed > 0.1f)
+	{
+		this->speed -= this->deccel * dt;
+	}
+	else if(this->speed < -0.1f)
+	{
+		this->speed += this->deccel * dt;
+	}
+	else
+	{
+		this->speed = 0.0f;
+	}
+
+	// Move player
+	glm::vec3 newPosition = this->position;
+	float yDisplace = newPosition.y + (this->speed * dt);
+	newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
+	this->SetPosition(newPosition);
 
 	// Run parent's update
 	GameObject::Update();
@@ -68,12 +89,15 @@ void PlayerObject::MoveLeft()
 	// Move along negative Y
 	if(this->position.y > -EDGE_BORDER)
 	{
-		glm::vec3 newPosition = this->position;
-		//float yDisplace = newPosition.y - this->speed;	// Before dt
-		float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
-		float yDisplace = newPosition.y - (this->speed * dt);
-		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
-		this->SetPosition(newPosition);
+		if(this->speed > (-1 * this->speedMax))
+		{
+			float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+			this->speed -= this->accel * dt;
+		}
+	}
+	else
+	{
+		this->speed = 0;
 	}
 }
 
@@ -83,12 +107,15 @@ void PlayerObject::MoveRight()
 	// Move along positve Y
 	if(this->position.y < EDGE_BORDER)
 	{
-		glm::vec3 newPosition = this->position;
-		//float yDisplace = newPosition.y + this->speed;	// Before dt
-		float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
-		float yDisplace = newPosition.y + (this->speed * dt);
-		newPosition = glm::vec3(newPosition.x, yDisplace, newPosition.z);
-		this->SetPosition(newPosition);
+		if(this->speed < this->speedMax)
+		{
+			float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
+			this->speed += this->accel * dt;
+		}
+	}
+	else
+	{
+		this->speed = 0;
 	}
 }
 
@@ -107,7 +134,8 @@ void PlayerObject::init()
 	this->colorTint = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);	// Green
 
 	// Set speed
-	this->speed = 10.0f;
-	this->accel = 10.0f;
-	this->deccel = 3.3f;
+	this->speed = 0.0f;
+	this->accel = 70.0f;
+	this->deccel = 35.0f;
+	this->speedMax = 15.0f;
 }

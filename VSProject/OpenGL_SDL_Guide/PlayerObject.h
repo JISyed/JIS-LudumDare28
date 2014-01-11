@@ -24,7 +24,8 @@ private:
 
 	float speed;							// Speed of player
 	float accel;							// Acceleration
-	float deccel;							// Decelleration
+	float deccel;							// Deceleration
+	float speedMax;							// Maximum speed
 
 	// Helpers =======================
 

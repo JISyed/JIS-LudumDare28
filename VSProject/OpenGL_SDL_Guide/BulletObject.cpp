@@ -76,6 +76,6 @@ void BulletObject::init()
 
 	// Set bullet speed
 	//this->speed = 0.2f;		// Before delta time
-	this->speed = 10.0f;
-	this->accel = 20.0f;
+	this->speed = 5.0f;
+	this->accel = 70.0f;
 }

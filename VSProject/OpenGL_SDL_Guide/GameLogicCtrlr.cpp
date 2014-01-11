@@ -73,7 +73,7 @@ void GameLogicCtrlr::LoopGame()
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
 			randScale = RandomCtrlr::GetInstance()->Range(0.5f, 3.0f);
 			//std::cout << "Scale: " << randScale << std::endl;
-			enemy->SetScale(randScale, randScale, randScale);
+			enemy->SetScale(randScale, randScale, randScale + randScale * 0.2f);
 			GameObjectCtrlr::GetInstance()->Add(enemy);
 		}
 	}
