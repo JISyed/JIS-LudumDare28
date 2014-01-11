@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletObject.cpp" />
+    <ClCompile Include="DifficultyCtrlr.cpp" />
     <ClCompile Include="EnemyObject.cpp" />
     <ClCompile Include="GameLogicCtrlr.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BulletObject.h" />
+    <ClInclude Include="DifficultyCtrlr.h" />
     <ClInclude Include="EnemyObject.h" />
     <ClInclude Include="GameGeometry.h" />
     <ClInclude Include="GameLogicCtrlr.h" />

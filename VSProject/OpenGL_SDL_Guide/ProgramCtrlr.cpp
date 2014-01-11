@@ -5,6 +5,7 @@
 #include "GameLogicCtrlr.h"
 #include "TimeCtrlr.h"
 #include "RandomCtrlr.h"
+#include "DifficultyCtrlr.h"
 
 #include <iostream>
 
@@ -81,6 +82,10 @@ void ProgramCtrlr::InitializeProgram()
 	this->randomCtrlr = RandomCtrlr::GetInstance();
 	this->randomCtrlr->InitializeRand();
 
+	// Initialize DifficultyCtrlr to scale difficulty over time
+	this->difficultyCtrlr = DifficultyCtrlr::GetInstance();
+	this->difficultyCtrlr->InitializeDifficulty();
+
 	// Initialized struct of key holding states (keyboard)
 	this->keysHeld.Left = false;
 	this->keysHeld.Right = false;
@@ -152,6 +157,9 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 	// Update time
 	this->timeCtrlr->LoopTime();
 
+	// Update difficulty scale
+	this->difficultyCtrlr->LoopDifficulty();
+
 	// Update randomizer
 	this->randomCtrlr->LoopRand();
 
@@ -189,6 +197,9 @@ void ProgramCtrlr::FinalizeProgram()
 	// Release things for randomization
 	this->randomCtrlr->FinalizeRand();
 
+	// Release things for difficulty scaling
+	this->difficultyCtrlr->FinalizeDifficulty();
+
 	// Release things for time functionality
 	this->timeCtrlr->FinalizeTime();
 
@@ -222,6 +233,12 @@ void ProgramCtrlr::ResetProgram()
 	// Destroy all the GameObjects
 	this->gameObjectCtrlr->ReleaseGameObjects();
 
+	// Reset difficulty
+	this->difficultyCtrlr->FinalizeDifficulty();
+
+	// Reset time data
+	this->timeCtrlr->FinalizeTime();
+
 	// Re-init game ------------
 
 	// Initialize anything GameObject Manager needs
@@ -229,6 +246,12 @@ void ProgramCtrlr::ResetProgram()
 
 	// Initialize everything for the actual game
 	this->gameLogicCtrlr->InitializeGame();
+
+	// Initialize time data
+	this->timeCtrlr->InitializeTime();
+	
+	// Initialize difficulty scaling
+	this->difficultyCtrlr->InitializeDifficulty();
 
 	// Reset flag
 	ProgramCtrlr::shouldReset = false;

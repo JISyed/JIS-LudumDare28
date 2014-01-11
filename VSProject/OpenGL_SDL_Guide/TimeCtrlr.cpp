@@ -49,6 +49,7 @@ void TimeCtrlr::LoopTime()
 void TimeCtrlr::FinalizeTime()
 {
 	this->updateStartTime = StandardClock::now();
+	this->gameStartTime = StandardClock::now();
 }
 
 // Routines ================================================

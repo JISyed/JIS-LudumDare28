@@ -17,6 +17,7 @@ class GameObjectCtrlr;
 class GameLogicCtrlr;
 class TimeCtrlr;
 class RandomCtrlr;
+class DifficultyCtrlr;
 
 // Data struct to hold key holding states
 struct KeysHeld
@@ -52,6 +53,7 @@ private:
 	GameLogicCtrlr* gameLogicCtrlr;		// STATIC instance of game's logic
 	TimeCtrlr* timeCtrlr;				// STATIC instance to time functionality
 	RandomCtrlr* randomCtrlr;			// STATIC instance to the random generator
+	DifficultyCtrlr* difficultyCtrlr;	// STATIC instance to difficulty scaler
 	SDL_Window* theWindow;				// Game window handled by SDL
 	SDL_GLContext theGLContext;			// OpenGL graphics context
 	SDL_Event windowEvent;				// Program event handled by SDL per frame

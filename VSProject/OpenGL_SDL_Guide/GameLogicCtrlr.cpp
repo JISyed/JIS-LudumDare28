@@ -4,6 +4,7 @@
 #include "ProgramCtrlr.h"
 #include "RandomCtrlr.h"
 #include "TimeCtrlr.h"
+#include "DifficultyCtrlr.h"
 
 #include "PlayerObject.h"
 #include "BulletObject.h"
@@ -59,7 +60,7 @@ void GameLogicCtrlr::LoopGame()
 	{
 		launchedEnemies = true;
 
-		// Mark time stamp
+		// Mark time stamp for enemy spawn interval
 		this->launchTimeInterval = rand->Range(0.3f, 0.8f);
 		this->launchTimeStamp = time->GetRunTime() + this->launchTimeInterval;
 
@@ -67,6 +68,7 @@ void GameLogicCtrlr::LoopGame()
 		float randSpawnPos;
 		float randScale;
 
+		// Determine how many enemies to spawn every spawn interval
 		int spawnAmount = rand->Range(1, 2);
 
 		// Make some enemies
@@ -77,6 +79,7 @@ void GameLogicCtrlr::LoopGame()
 			enemy = NULL;
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
 			
+			// Determine enemy size
 			randScale = rand->Range(0.75f, 2.0f);
 			enemy->SetScale(randScale, randScale, randScale + randScale * 0.2f);
 			

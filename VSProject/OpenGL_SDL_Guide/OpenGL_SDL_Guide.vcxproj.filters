@@ -63,6 +63,9 @@
     <ClCompile Include="RandomCtrlr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultyCtrlr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\firstFrag.glsl">
@@ -110,6 +113,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RandomCtrlr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyCtrlr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
