@@ -55,13 +55,15 @@ void GameLogicCtrlr::LoopGame()
 {
 	TimeCtrlr* time = TimeCtrlr::GetInstance();
 	RandomCtrlr* rand = RandomCtrlr::GetInstance();
+	DifficultyCtrlr* diffScl = DifficultyCtrlr::GetInstance();
 
 	if(!launchedEnemies && !this->IsGameOver())
 	{
 		launchedEnemies = true;
 
 		// Mark time stamp for enemy spawn interval
-		this->launchTimeInterval = rand->Range(0.3f, 0.8f);
+		float sto = diffScl->GetSpawnTimeOffset();
+		this->launchTimeInterval = rand->Range(0.3f - sto, 0.8f - (0.5f*sto));
 		this->launchTimeStamp = time->GetRunTime() + this->launchTimeInterval;
 
 		EnemyObject* enemy;
@@ -69,7 +71,8 @@ void GameLogicCtrlr::LoopGame()
 		float randScale;
 
 		// Determine how many enemies to spawn every spawn interval
-		int spawnAmount = rand->Range(1, 2);
+		int sqo = diffScl->GetSpawnQuantityOffset();
+		int spawnAmount = rand->Range(1, 2 + sqo);
 
 		// Make some enemies
 		for(int i = 0; i < spawnAmount; i++)
@@ -80,7 +83,8 @@ void GameLogicCtrlr::LoopGame()
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
 			
 			// Determine enemy size
-			randScale = rand->Range(0.75f, 2.0f);
+			float sso = diffScl->GetSpawnSizeOffset();
+			randScale = rand->Range(0.5f + (0.5f*sso), 2.0f + sso);
 			enemy->SetScale(randScale, randScale, randScale + randScale * 0.2f);
 			
 			GameObjectCtrlr::GetInstance()->Add(enemy);
