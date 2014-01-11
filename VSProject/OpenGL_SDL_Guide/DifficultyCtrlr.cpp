@@ -13,10 +13,14 @@ DifficultyCtrlr::DifficultyCtrlr()
 	this->spawnTimeLimit = 0.275f;
 	this->spawnSizeLimit = 2.0f;
 	this->spawnQuantityLimit = 4.0f;
+	this->spawnSpeedLimit = 3.0f;
+	this->spawnAccelLimit = 6.0f;
 
 	this->spawnTimeRate = 0.008f;
 	this->spawnSizeRate = 0.02f;
 	this->spawnQuantityRate = 0.015f;
+	this->spawnSpeedRate = 0.0005f;
+	this->spawnAccelRate = 0.001f;
 }
 
 // Public singleton instance getter
@@ -65,6 +69,16 @@ void DifficultyCtrlr::LoopDifficulty()
 	}
 
 	this->spawnQuantityOffset = (int) spawnQuantityRateAccumulator;
+
+	if(this->spawnSpeedOffset < this->spawnSpeedLimit)
+	{
+		this->spawnSpeedOffset += this->spawnSpeedRate * dt;
+	}
+
+	if(this->spawnAccelOffset < this->spawnAccelLimit)
+	{
+		this->spawnAccelOffset += this->spawnAccelRate * dt;
+	}
 }
 
 // During release of program
@@ -94,4 +108,16 @@ float DifficultyCtrlr::GetSpawnSizeOffset()
 int DifficultyCtrlr::GetSpawnQuantityOffset()
 {
 	return this->spawnQuantityOffset;
+}
+
+// Offset of enemy's start speed
+float DifficultyCtrlr::GetSpawnSpeedOffset()
+{
+	return this->spawnSpeedOffset;
+}
+
+// Offset of enemy's acceleration
+float DifficultyCtrlr::GetSpawnAccelOffset()
+{
+	return this->spawnAccelOffset;
 }

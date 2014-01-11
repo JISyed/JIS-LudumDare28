@@ -3,6 +3,8 @@
 #include "GameLogicCtrlr.h"
 #include "PlayerObject.h"
 #include "TimeCtrlr.h"
+#include "RandomCtrlr.h"
+#include "DifficultyCtrlr.h"
 
 // Ctor / Dtor ===========================================
 
@@ -88,13 +90,18 @@ void EnemyObject::Update()
 // Initialization after construction
 void EnemyObject::init()
 {
+	RandomCtrlr* rand = RandomCtrlr::GetInstance();
+	DifficultyCtrlr* diffScl = DifficultyCtrlr::GetInstance();
+
 	// Set other properties
 	this->eulerAngles = glm::vec3(0.0f, 0.0f, 0.0f);
 	this->scale = glm::vec3(0.8f, 0.8f, 1.0f);
 	this->radius = 0.5f;
 	this->colorTint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);	// Red
 
-	// Set speed
-	this->speed = 7.5f;
-	this->accel = 9.0f;
+	// Set speed and acceleration
+	float sso = diffScl->GetSpawnSpeedOffset();
+	this->speed = rand->Range(6.0f, 8.0f + sso);
+	float sao = diffScl->GetSpawnAccelOffset();
+	this->accel = rand->Range(8.0f, 10.0f + sao);
 }
