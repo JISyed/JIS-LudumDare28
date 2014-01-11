@@ -16,7 +16,6 @@ public:
 	// Ctor/Dtor ===================
 	
 	GameObject();						// Constuctor
-	
 
 	// Routines ====================
 	
@@ -82,8 +81,7 @@ protected:
 	glm::vec3 eulerAngles;				// Angle rotations in 3 dimentions
 	glm::vec4 colorTint;				// The color independent of textures
 	float radius;						// Half the length of the cube
+
 };
-
-
 
 #endif

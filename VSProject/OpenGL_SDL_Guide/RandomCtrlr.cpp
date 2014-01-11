@@ -1,11 +1,8 @@
 #include "RandomCtrlr.h"
 
 #include <random>
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-#include <sstream>
 #include <chrono>
+#include <iostream>
 
 // Singleton =============================================
 
@@ -34,66 +31,6 @@ RandomCtrlr* RandomCtrlr::privGetInstance()
 // Initialize in beginning of program
 void RandomCtrlr::InitializeRand()
 {
-	/*
-	std::cout << "Init Rand" << std::endl;
-	std::default_random_engine randEng;
-	std::cout << "Min: " << randEng.min() << std::endl;
-	std::cout << "Max: " << randEng.max() << std::endl;
-
-	std::cout << "A rand: " << randEng() << std::endl;
-	std::cout << "A rand: " << randEng() << std::endl;
-
-	std::stringstream state;
-	state << randEng;		// Save current state
-
-	std::cout << "A rand: " << randEng() << std::endl;
-	std::cout << "A rand: " << randEng() << std::endl;
-
-	state >> randEng;		// Restore current state
-
-	std::cout << "A rand: " << randEng() << std::endl;
-	std::cout << "A rand: " << randEng() << std::endl;
-
-	std::default_random_engine ee;
-	std::default_random_engine ee2;
-
-	for(int i=0; i<10; i++)
-	{
-		std::cout << ee() << std::endl;
-	}
-	std::cout << std::endl;
-
-	for(int i=0; i<10; i++)
-	{
-		std::cout << ee2() << std::endl;
-	}
-	std::cout << std::endl;
-
-	// Define a seed for the randomizers to use
-	
-
-	std::default_random_engine ee3(this->NewSeed());
-
-	for(int i=0; i<10; i++)
-	{
-		std::cout << ee3() << std::endl;
-	}
-	std::cout << std::endl;
-
-	for(int i=0; i<10; i++)
-	{
-		std::cout << this->Range(1, 256) << std::endl;
-	}
-	std::cout << std::endl;
-
-	for(int i=0; i<10; i++)
-	{
-		std::cout << this->Range(0.0f, 1.0f) << std::endl;
-	}
-	std::cout << std::endl;
-
-	*/
-	
 	// Set the time seed
 	this->timeSeed = (unsigned long) std::chrono::steady_clock::now().time_since_epoch().count();
 }
@@ -139,8 +76,6 @@ int RandomCtrlr::Range(int min, int max)
 	// Generate a random number
 	result = distributor(generator);
 
-	//std::cout << "IntResult: " << result << std::endl;
-
 	return result;
 }
 
@@ -157,8 +92,6 @@ float RandomCtrlr::Range(float min, float max)
 
 	// Generate a random number
 	result = distributor(generator);
-
-	//std::cout << "RealResult: " << result << std::endl;
 
 	return result;
 }

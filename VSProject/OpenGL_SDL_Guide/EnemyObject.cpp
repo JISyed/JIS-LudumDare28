@@ -73,7 +73,6 @@ void EnemyObject::Update()
 
 	// Move along positive Z
 	glm::vec3 newPosition = this->position;
-	//float zDisplace = newPosition.z - this->speed;	// Before dt
 	float dt = TimeCtrlr::GetInstance()->GetDeltaTime();
 	this->speed = this->speed + (this->accel * dt);
 	float zDisplace = newPosition.z - (this->speed * dt);
@@ -96,7 +95,6 @@ void EnemyObject::init()
 	this->colorTint = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);	// Red
 
 	// Set speed
-	//this->speed = 0.2f;		// Before delta time
 	this->speed = 7.5f;
 	this->accel = 9.0f;
 }

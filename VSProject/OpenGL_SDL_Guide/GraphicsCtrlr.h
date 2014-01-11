@@ -78,6 +78,7 @@ public:
 	void DrawTriangles(int numberOfVertices);
 
 private:
+
 	// Singleton Access ===============
 
 	static GraphicsCtrlr* privGetInstance();	// Private singleton handler
@@ -89,24 +90,26 @@ private:
 	bool isCorrectShaderType(GLenum shaderType);		// Checks if the shaderType enum is correct
 	bool compileShader(GLenum shaderType, const char* shaderBuffer);	// Compiles shader of given type
 
-
 	// Housekeeping ===================
+
 	bool wasGeometryShaderLoaded;				// Flag to indicate if geometry shaders were used or not.
 
 	// Data ===========================
 
 	TextureCtrlr* textures;						// All the textures managed by an object
-	GLuint vao;									// Vertex Array Object - stores the links between vertex data and formats
-												// Vertex data is set in VBOs and vertex formats are set with glVertexAttribPointer()
-												// VAOs don't store vertex data; they need VBOs to reference data
-	GLuint vbo;									// Vertex Buffer Objects - point to data in graphics card
-	GLuint ebo;									// Element Buffer Object - gives each vertex a number identification
+	
 	int winWidth;								// Width of the window in pixels
 	int winHeight;								// Height of the window in pixels
 	GLuint shaderProgram;						// The vertex and fragment shader combined into a program
 	GLuint vertexShader;						// The shader that processes vertices
 	GLuint fragmentShader;						// The shader that processes pixels (fragments)
 	GLuint geometryShader;						// The shader that processes geometry assembled from verts
+	GLuint vbo;									// Vertex Buffer Objects - point to data in graphics card
+	GLuint ebo;									// Element Buffer Object - gives each vertex a number identification
+	GLuint vao;									// Vertex Array Object - stores the links between vertex data and formats
+												// Vertex data is set in VBOs and vertex formats are set with glVertexAttribPointer()
+												// VAOs don't store vertex data; they need VBOs to reference data
+	
 };
 
 #endif

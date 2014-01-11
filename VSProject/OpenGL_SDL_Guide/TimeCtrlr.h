@@ -1,7 +1,6 @@
 #ifndef TIME_CTRLR
 #define TIME_CTRLR
 
-#include <ctime>
 #include <chrono>
 
 typedef std::chrono::system_clock StandardClock;
@@ -24,6 +23,7 @@ public:
 	// Routines ==================
 
 	float GetDeltaTime();					// Get time last loop completed (in seconds)
+	float GetRunTime();						// Get time since launched game (in seconds)
 
 private:
 	// Singleton =================
@@ -34,6 +34,7 @@ private:
 	// Data ======================
 
 	PointInTime updateStartTime;			// Time Point when update started
+	PointInTime gameStartTime;				// Time Point when game started running
 	TimeDuration loopDuration;				// Time duration of program loop
 };
 

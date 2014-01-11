@@ -9,7 +9,6 @@
 #include "BulletObject.h"
 #include "EnemyObject.h"
 
-#include <ctime>
 #include <iostream>
 
 // Singleton ============================================
@@ -18,9 +17,9 @@
 GameLogicCtrlr::GameLogicCtrlr()
 {
 	this->gameOver = false;
-	this->launchEnemies = false;
-	this->launchTimeInterval = 1;
-	this->launchTimeStamp = (long int) 0;
+	this->launchedEnemies = false;
+	this->launchTimeInterval = 1.1f;
+	this->launchTimeStamp = 0;
 }
 
 // Public singleton instance getter
@@ -47,18 +46,20 @@ void GameLogicCtrlr::InitializeGame()
 	GameObjectCtrlr::GetInstance()->Add(player);
 
 	this->gameOver = false;
-	this->launchEnemies = false;
+	this->launchedEnemies = false;
 }
 
 // The main loop itself
 void GameLogicCtrlr::LoopGame()
 {
-	if(!launchEnemies && !this->IsGameOver())
+	TimeCtrlr* time = TimeCtrlr::GetInstance();
+
+	if(!launchedEnemies && !this->IsGameOver())
 	{
-		launchEnemies = true;
+		launchedEnemies = true;
 
 		// Mark time stamp
-		this->launchTimeStamp = (long int) std::time(NULL) + this->launchTimeInterval;
+		this->launchTimeStamp = time->GetRunTime() + this->launchTimeInterval;
 
 		EnemyObject* enemy;
 		float randSpawnPos;
@@ -68,19 +69,17 @@ void GameLogicCtrlr::LoopGame()
 		for(int i = 1; i < 6; i++)
 		{
 			randSpawnPos = RandomCtrlr::GetInstance()->Range(-EDGE_BORDER, EDGE_BORDER);
-			//std::cout << "Spawn: " << randSpawnPos << std::endl;
 			enemy = NULL;
 			enemy = new EnemyObject(glm::vec3(0.0f, randSpawnPos, ENEMY_SPAWN_HEIGHT));
 			randScale = RandomCtrlr::GetInstance()->Range(0.5f, 3.0f);
-			//std::cout << "Scale: " << randScale << std::endl;
 			enemy->SetScale(randScale, randScale, randScale + randScale * 0.2f);
 			GameObjectCtrlr::GetInstance()->Add(enemy);
 		}
 	}
 
-	if( ((long int) std::time(NULL) > this->launchTimeStamp) && launchEnemies)
+	if( ( time->GetRunTime() > this->launchTimeStamp) && launchedEnemies)
 	{
-		launchEnemies = false;
+		launchedEnemies = false;
 	}
 }
 
@@ -89,7 +88,7 @@ void GameLogicCtrlr::ReleaseGame()
 {
 	// Reset game over flag
 	this->gameOver = false;
-	this->launchEnemies = false;
+	this->launchedEnemies = false;
 }
 
 // Routines ===============================================

@@ -62,11 +62,10 @@ private:
 
 	// Helpers ===================
 
-	void ResetProgram();				// Actually resets the program
+	void ResetProgram();					// Actually resets the program
 	static ProgramCtrlr* privGetInstance();	// Private Instance Getter
-	ProgramCtrlr();						// Ctor
+	ProgramCtrlr();							// Ctor
 
 };
-
 
 #endif

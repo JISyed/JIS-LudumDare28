@@ -41,11 +41,6 @@ private:
 	// Data =================================
 	GameObjectList listOfGameObjects;			// List of all GameObjects
 
-
 };
-
-
-
-
 
 #endif

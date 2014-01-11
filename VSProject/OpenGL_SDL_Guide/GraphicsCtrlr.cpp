@@ -6,7 +6,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <time.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -232,7 +231,6 @@ void GraphicsCtrlr::CreateGLBuffers()
 	glBindVertexArray(this->vao);
 
 
-
 	// Generate GL vertex buffer object (VBOs)
 	glGenBuffers(1, &(this->vbo));
 
@@ -242,7 +240,6 @@ void GraphicsCtrlr::CreateGLBuffers()
 	// Copy triangle vertex data to current active (bound) vertex buffer object (VBO).
 	// Static draw indicates that vert data is uploaded once and drawn many times.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-
 
 
 	// Create an Element Buffer Object (EBO) out of the element array

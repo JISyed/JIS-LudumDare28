@@ -29,6 +29,7 @@ TimeCtrlr* TimeCtrlr::privGetInstance()
 void TimeCtrlr::InitializeTime()
 {
 	this->updateStartTime = StandardClock::now();
+	this->gameStartTime = StandardClock::now();
 }
 
 // During game loop
@@ -56,4 +57,13 @@ void TimeCtrlr::FinalizeTime()
 float TimeCtrlr::GetDeltaTime()
 {
 	return this->loopDuration.count();
+}
+
+//Get time since launched game (in seconds)
+float TimeCtrlr::GetRunTime()
+{
+	PointInTime currentTime = StandardClock::now();
+	TimeDuration gameRunTime = currentTime - this->gameStartTime;
+
+	return gameRunTime.count();
 }

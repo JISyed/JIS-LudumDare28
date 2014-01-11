@@ -20,7 +20,6 @@ class TextureObject;
 
 typedef std::list<TextureObject*> TextureList;
 
-
 class TextureCtrlr
 {
 public:
