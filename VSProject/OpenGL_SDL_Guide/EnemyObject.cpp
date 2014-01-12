@@ -75,7 +75,7 @@ void EnemyObject::Update()
 			{
 				this->alreadyPassedByPlayer = true;
 				GameLogicCtrlr::GetInstance()->IncrementScore();
-				std::cout << "Score: " << GameLogicCtrlr::GetInstance()->GetScore() << std::endl;
+				//std::cout << "Score: " << GameLogicCtrlr::GetInstance()->GetScore() << std::endl;
 			}
 		}
 	}

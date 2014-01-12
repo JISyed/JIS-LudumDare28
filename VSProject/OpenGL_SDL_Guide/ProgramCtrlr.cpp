@@ -8,6 +8,7 @@
 #include "DifficultyCtrlr.h"
 
 #include <iostream>
+#include <string>
 
 // Static data ==============================================
 
@@ -67,13 +68,7 @@ void ProgramCtrlr::InitializeProgram()
 	this->graphicsCtrlr->InitializeGraphics();
 
 	// Initialize font renderer
-	if(TTF_Init() == -1)
-	{
-		std::cout << "Error: ProgramCtrlr::Init(): SDL_TTF failed to start!\n";
-		std::cout << "Quiting in 11 seconds...";
-		Sleep(11000);
-		exit(1);
-	}
+	this->SetupFontRendering();
 
 	// Make GameObject Manager
 	this->gameObjectCtrlr = GameObjectCtrlr::GetInstance();
@@ -186,6 +181,9 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 	// The Graphics Loop
 	graphicsCtrlr->LoopGraphics();
 
+	// Draw font
+	this->DrawFont();
+
 	// glSwapBuffers - swap between the front and back render buffer
 	SDL_GL_SwapWindow(this->theWindow);
 
@@ -216,6 +214,11 @@ void ProgramCtrlr::FinalizeProgram()
 
 	// Release things for time functionality
 	this->timeCtrlr->FinalizeTime();
+
+	// Release things for font rendering
+	SDL_FreeSurface(this->textSurface);
+	TTF_CloseFont(this->textFont);
+	TTF_Quit();
 
 	// Delete graphics canvas (OpenGL context)
 	SDL_GL_DeleteContext(this->theGLContext);
@@ -269,4 +272,55 @@ void ProgramCtrlr::ResetProgram()
 
 	// Reset flag
 	ProgramCtrlr::shouldReset = false;
+}
+
+// Setup font rendering
+void ProgramCtrlr::SetupFontRendering()
+{
+	// Initilize font rendering
+	std::cout << "Initializing font renderer... ";
+	if(TTF_Init() == -1)
+	{
+		std::cout << "Error: ProgramCtrlr::SetupFontRendering(): SDL_TTF failed to start!\n";
+		std::cout << "Quiting in 11 seconds...";
+		Sleep(11000);
+		exit(1);
+	}
+	std::cout << "Success\n";
+
+	// Load the font
+	std::cout << "Loading font... ";
+	this->textFont = TTF_OpenFont("./Fonts/gameFont.ttf", 28);
+
+	// Check if the font loaded correctly
+	if(this->textFont == NULL)
+	{
+		std::cout << "Error: ProgramCtrlr::SetupFontRendering(): Font failed to load!\n";
+		std::cout << "Quiting in 11 seconds...";
+		Sleep(11000);
+		exit(1);
+	}
+	std::cout << "Success\n";
+}
+
+// Draw the font (display score)
+void ProgramCtrlr::DrawFont()
+{
+	// Create the score displaying string to print with fonts
+	int score = GameLogicCtrlr::GetInstance()->GetScore();
+	std::string scoreDisplay("Score: " + std::to_string(score));
+	
+	//std::cout << scoreDisplay << std::endl;
+
+	// Apply text to SDLsurface
+	this->textSurface = TTF_RenderText_Solid(this->textFont, scoreDisplay.c_str(), this->textColor);
+
+	if(this->textSurface == NULL)
+	{
+		std::cout << "Warning: ProgramCtrlr::DrawFont(): Font failed to draw!\n";
+		std::cout << TTF_GetError() << std::endl;
+	}
+
+	// Apply font surface to screen
+	
 }

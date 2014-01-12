@@ -72,6 +72,8 @@ private:
 	void ResetProgram();					// Actually resets the program
 	static ProgramCtrlr* privGetInstance();	// Private Instance Getter
 	ProgramCtrlr();							// Ctor
+	void SetupFontRendering();				// Setup font rendering
+	void DrawFont();						// Draw the font (display score)
 
 };
 
