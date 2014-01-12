@@ -51,6 +51,7 @@ public:
 	GameObject* GetBulletInstance();
 	PlayerObject* GetPlayerInstance();
 	bool IsGameOver();
+	int GetScore();
 
 private:
 	// Singleton Management =================

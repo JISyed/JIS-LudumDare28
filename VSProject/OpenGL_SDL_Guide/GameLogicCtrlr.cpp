@@ -164,7 +164,6 @@ void GameLogicCtrlr::MakePlayerMoveRight()
 void GameLogicCtrlr::IncrementScore()
 {
 	this->score++;
-	std::cout << "Score: " << this->score << std::endl;
 }
 
 // Properties ===========================
@@ -204,4 +203,9 @@ PlayerObject* GameLogicCtrlr::GetPlayerInstance()
 bool GameLogicCtrlr::IsGameOver()
 {
 	return this->gameOver;
+}
+
+int GameLogicCtrlr::GetScore()
+{
+	return this->score;
 }

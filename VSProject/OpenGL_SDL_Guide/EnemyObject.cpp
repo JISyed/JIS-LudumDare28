@@ -6,6 +6,8 @@
 #include "RandomCtrlr.h"
 #include "DifficultyCtrlr.h"
 
+#include <iostream>
+
 // Ctor / Dtor ===========================================
 
 // Constructor
@@ -73,6 +75,7 @@ void EnemyObject::Update()
 			{
 				this->alreadyPassedByPlayer = true;
 				GameLogicCtrlr::GetInstance()->IncrementScore();
+				std::cout << "Score: " << GameLogicCtrlr::GetInstance()->GetScore() << std::endl;
 			}
 		}
 	}
