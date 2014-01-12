@@ -11,6 +11,7 @@
 #else
 #include <SDL2/SDL.h>
 #endif
+#include <SDL_ttf.h>
 
 class GraphicsCtrlr;
 class GameObjectCtrlr;
@@ -61,6 +62,10 @@ private:
 	KeysHeld keysHeld;					// Tells which keys are held down
 
 	static bool shouldReset;			// Flag if program should reset
+
+	SDL_Surface* textSurface;			// Surface to render text upon
+	TTF_Font* textFont;					// Font to use text with
+	SDL_Color textColor;				// Color to use text with
 
 	// Helpers ===================
 

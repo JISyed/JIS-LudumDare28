@@ -3,7 +3,7 @@
 !glew32.dll
 !SDL2.dll
 !libfreetype-6.dll
-!SDL_ttf.dll
+!SDL2_ttf.dll
 !zlib1.dll
 
 ## Ignore Visual Studio temporary files, build results, and

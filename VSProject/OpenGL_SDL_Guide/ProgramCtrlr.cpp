@@ -18,7 +18,12 @@ bool ProgramCtrlr::shouldReset = false;
 // Ctor
 ProgramCtrlr::ProgramCtrlr()
 {
-
+	this->textColor.r = 255;
+	this->textColor.g = 255;
+	this->textColor.b = 255;
+	this->textColor.a = 255;
+	this->textSurface = NULL;
+	this->textFont = NULL;
 }
 
 // Singleton =================================================
@@ -43,7 +48,7 @@ ProgramCtrlr* ProgramCtrlr::privGetInstance()
 void ProgramCtrlr::InitializeProgram()
 {
 	// Start SDL
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+	SDL_Init(SDL_INIT_EVERYTHING);
 
 	int width = 800;
 	int height = 600;
@@ -60,6 +65,15 @@ void ProgramCtrlr::InitializeProgram()
 
 	// Initilaize everything for graphics
 	this->graphicsCtrlr->InitializeGraphics();
+
+	// Initialize font renderer
+	if(TTF_Init() == -1)
+	{
+		std::cout << "Error: ProgramCtrlr::Init(): SDL_TTF failed to start!\n";
+		std::cout << "Quiting in 11 seconds...";
+		Sleep(11000);
+		exit(1);
+	}
 
 	// Make GameObject Manager
 	this->gameObjectCtrlr = GameObjectCtrlr::GetInstance();
