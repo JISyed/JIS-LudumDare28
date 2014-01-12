@@ -11,7 +11,7 @@
 #else
 #include <SDL2/SDL.h>
 #endif
-#include <SDL_ttf.h>
+//#include <SDL_ttf.h>
 
 class GraphicsCtrlr;
 class GameObjectCtrlr;
@@ -63,17 +63,17 @@ private:
 
 	static bool shouldReset;			// Flag if program should reset
 
-	SDL_Surface* textSurface;			// Surface to render text upon
-	TTF_Font* textFont;					// Font to use text with
-	SDL_Color textColor;				// Color to use text with
+	//SDL_Surface* textSurface;			// Surface to render text upon
+	//TTF_Font* textFont;					// Font to use text with
+	//SDL_Color textColor;				// Color to use text with
 
 	// Helpers ===================
 
 	void ResetProgram();					// Actually resets the program
 	static ProgramCtrlr* privGetInstance();	// Private Instance Getter
 	ProgramCtrlr();							// Ctor
-	void SetupFontRendering();				// Setup font rendering
-	void DrawFont();						// Draw the font (display score)
+	//void SetupFontRendering(const char* fontFilePath);// Setup font rendering
+	//void DrawFont();						// Draw the font (display score)
 
 };
 

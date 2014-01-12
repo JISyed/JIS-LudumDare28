@@ -19,12 +19,14 @@ bool ProgramCtrlr::shouldReset = false;
 // Ctor
 ProgramCtrlr::ProgramCtrlr()
 {
+	/*
 	this->textColor.r = 255;
 	this->textColor.g = 255;
 	this->textColor.b = 255;
 	this->textColor.a = 255;
 	this->textSurface = NULL;
 	this->textFont = NULL;
+	//*/
 }
 
 // Singleton =================================================
@@ -55,7 +57,12 @@ void ProgramCtrlr::InitializeProgram()
 	int height = 600;
 
 	// Make a window
-	this->theWindow = SDL_CreateWindow("BlockDodger", 100, 100, width, height, SDL_WINDOW_OPENGL);
+	this->theWindow = SDL_CreateWindow("BlockDodger", 
+									   SDL_WINDOWPOS_UNDEFINED, 
+									   SDL_WINDOWPOS_CENTERED, 
+									   width, 
+									   height, 
+									   SDL_WINDOW_OPENGL);
 
 	// Make a graphics canvas (OpenGL context)
 	this->theGLContext = SDL_GL_CreateContext(this->theWindow);
@@ -68,7 +75,7 @@ void ProgramCtrlr::InitializeProgram()
 	this->graphicsCtrlr->InitializeGraphics();
 
 	// Initialize font renderer
-	this->SetupFontRendering();
+	//this->SetupFontRendering("./Fonts/gameFont.ttf");
 
 	// Make GameObject Manager
 	this->gameObjectCtrlr = GameObjectCtrlr::GetInstance();
@@ -182,7 +189,7 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 	graphicsCtrlr->LoopGraphics();
 
 	// Draw font
-	this->DrawFont();
+	//this->DrawFont();
 
 	// glSwapBuffers - swap between the front and back render buffer
 	SDL_GL_SwapWindow(this->theWindow);
@@ -216,9 +223,9 @@ void ProgramCtrlr::FinalizeProgram()
 	this->timeCtrlr->FinalizeTime();
 
 	// Release things for font rendering
-	SDL_FreeSurface(this->textSurface);
-	TTF_CloseFont(this->textFont);
-	TTF_Quit();
+	//SDL_FreeSurface(this->textSurface);
+	//TTF_CloseFont(this->textFont);
+	//TTF_Quit();
 
 	// Delete graphics canvas (OpenGL context)
 	SDL_GL_DeleteContext(this->theGLContext);
@@ -274,8 +281,9 @@ void ProgramCtrlr::ResetProgram()
 	ProgramCtrlr::shouldReset = false;
 }
 
+/*
 // Setup font rendering
-void ProgramCtrlr::SetupFontRendering()
+void ProgramCtrlr::SetupFontRendering(const char* fontFilePath)
 {
 	// Initilize font rendering
 	std::cout << "Initializing font renderer... ";
@@ -290,7 +298,7 @@ void ProgramCtrlr::SetupFontRendering()
 
 	// Load the font
 	std::cout << "Loading font... ";
-	this->textFont = TTF_OpenFont("./Fonts/gameFont.ttf", 28);
+	this->textFont = TTF_OpenFont(fontFilePath, 28);
 
 	// Check if the font loaded correctly
 	if(this->textFont == NULL)
@@ -302,7 +310,9 @@ void ProgramCtrlr::SetupFontRendering()
 	}
 	std::cout << "Success\n";
 }
+//*/
 
+/*
 // Draw the font (display score)
 void ProgramCtrlr::DrawFont()
 {
@@ -324,3 +334,4 @@ void ProgramCtrlr::DrawFont()
 	// Apply font surface to screen
 	
 }
+//*/
