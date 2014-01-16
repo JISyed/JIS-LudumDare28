@@ -130,10 +130,10 @@ void ProgramCtrlr::LoopProgram(bool& shouldQuit)
 		}
 
 		// Leave Game Over screen (only if game over)
-		if (this->windowEvent.type == SDL_KEYUP && 
-			this->windowEvent.key.keysym.sym == SDLK_RETURN)
+		if(this->gameLogicCtrlr->IsGameOver())
 		{
-			if(this->gameLogicCtrlr->IsGameOver())
+			if (this->windowEvent.type == SDL_KEYUP && 
+				this->windowEvent.key.keysym.sym == SDLK_RETURN)
 			{
 				ProgramCtrlr::MarkProgramForReset();
 			}
@@ -266,6 +266,7 @@ void ProgramCtrlr::ResetProgram()
 	// Re-init game ------------
 
 	// Initialize anything GameObject Manager needs
+	this->gameObjectCtrlr->ReleaseGameObjects();
 	this->gameObjectCtrlr->InitializeGameObjects();
 
 	// Initialize everything for the actual game

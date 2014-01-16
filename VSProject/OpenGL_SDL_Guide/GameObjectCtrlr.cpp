@@ -89,6 +89,8 @@ void GameObjectCtrlr::UpdateAll()
 	{
 		static_cast<GameObject*>(*itr)->Update();
 	}
+
+	//std::cout << "# Of GameObjects: " << this->listOfGameObjects.size() << std::endl;
 }
 
 // Draws all GameObjects

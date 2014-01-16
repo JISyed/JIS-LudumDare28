@@ -63,6 +63,7 @@ private:
 	
 	GameObject* bulletInstance;					// The current bullet instance
 	PlayerObject* playerInstance;				// The current player instance
+	//GameObject* gameOverDisplay;				// The game over display
 	bool gameOver;								// Is it Game Over yet?
 	bool launchedEnemies;						// Did the enemies launch?
 	float launchTimeStamp;						// Timestamp for launching enemies (in seconds)

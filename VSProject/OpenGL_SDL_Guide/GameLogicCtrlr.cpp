@@ -42,11 +42,14 @@ GameLogicCtrlr* GameLogicCtrlr::privGetInstance()
 // Create objects before the main loop
 void GameLogicCtrlr::InitializeGame()
 {
+	// Get rid of stray Game Over
+	this->gameOver = false;
+	GameObjectCtrlr::GetInstance()->ReleaseGameObjects();
+
 	// Make a player
 	PlayerObject* player = new PlayerObject(glm::vec3(0.0f, 0.0f, 0.0f));
 	GameObjectCtrlr::GetInstance()->Add(player);
 
-	this->gameOver = false;
 	this->launchedEnemies = false;
 	this->score = 0;
 }
@@ -180,14 +183,15 @@ void GameLogicCtrlr::SetPlayerInstance(PlayerObject* newPlayer)
 
 void GameLogicCtrlr::DeclareGameOver()
 {
-	this->gameOver = true;
-
-	std::cout << "Game Over!" << std::endl;
+	std::cout << "Game Over! Press Enter." << std::endl;
+	//*
 	GameObject* gameOverSplash = new GameObject();
 	gameOverSplash->SetTextureUnit(1);
 	gameOverSplash->SetPosition(18.0f, 0.0f, 13.0f);
 	gameOverSplash->SetScale(1.0f, 2.0f, 2.0f);
 	GameObjectCtrlr::GetInstance()->Add(gameOverSplash);
+	//*/
+	this->gameOver = true;
 }
 
 GameObject* GameLogicCtrlr::GetBulletInstance()
